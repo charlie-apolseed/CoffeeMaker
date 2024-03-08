@@ -308,7 +308,7 @@ public class Inventory extends DomainObject {
             return false;
         }
     }
-
+ 
     /**
      * Adds ingredients to the inventory
      *

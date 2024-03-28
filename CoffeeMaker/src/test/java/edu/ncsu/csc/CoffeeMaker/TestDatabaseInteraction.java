@@ -31,11 +31,11 @@ public class TestDatabaseInteraction {
 		recipeService.deleteAll();
 		/*New recipe*/
 		Recipe mocha = new Recipe();
+		mocha.setName("Mocha");
 		mocha.setChocolate(5);
 		mocha.setMilk(1);
 		mocha.setCoffee(50);
 		mocha.setPrice(350);
-		 /* set fields here */    
 		recipeService.save(mocha );
 		
 		
@@ -46,6 +46,24 @@ public class TestDatabaseInteraction {
 		/*Get the mocha recipe from the database*/
 		Recipe dbRecipe = dbRecipes.get(0);
 		/*Confirm that fields are equal*/
+		Assertions.assertEquals(mocha.getName(), dbRecipe.getName());
+		Assertions.assertEquals(mocha.getChocolate(), dbRecipe.getChocolate());
+		Assertions.assertEquals(mocha.getPrice(), dbRecipe.getPrice());
+		Assertions.assertEquals(mocha.getMilk(), dbRecipe.getMilk());
+		Assertions.assertEquals(mocha.getSugar(), dbRecipe.getSugar());
+		Assertions.assertEquals(mocha.getCoffee(), dbRecipe.getCoffee());
+		/*Test get recipe by name*/
+		Assertions.assertEquals(mocha, recipeService.findByName("Mocha"));
+		
+		/*Test edit recipe */
+		
+		mocha.setName("Mocha1");
+		mocha.setChocolate(6);
+		mocha.setMilk(2);
+		mocha.setCoffee(51);
+		mocha.setPrice(351);
+		recipeService.save(mocha);
+		/*Confirm that the new fields are equal */
 		Assertions.assertEquals(mocha.getName(), dbRecipe.getName());
 		Assertions.assertEquals(mocha.getChocolate(), dbRecipe.getChocolate());
 		Assertions.assertEquals(mocha.getPrice(), dbRecipe.getPrice());

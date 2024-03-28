@@ -91,7 +91,7 @@ public class APITest {
 		    
 		    String inventoryTest2 = mvc.perform( get( "/api/v1/inventory" ) ).andDo( print() ).andExpect( status().isOk() )
 			        .andReturn().getResponse().getContentAsString();
-		    //test if mocha ingredients were succesfully removed from inventory
+		    //test if mocha ingredients were succesfully removed from inventory.
 		    Assertions.assertTrue(inventoryTest2.contains("\"milk\":46"));
 		    Assertions.assertTrue(inventoryTest2.contains("\"coffee\":47"));
 		    Assertions.assertTrue(inventoryTest2.contains("\"sugar\":42"));

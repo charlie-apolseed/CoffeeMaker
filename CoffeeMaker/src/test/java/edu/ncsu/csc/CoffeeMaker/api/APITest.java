@@ -46,6 +46,17 @@ public class APITest {
 	    mvc = MockMvcBuilders.webAppContextSetup( context ).build();
 	}
 	
+	private Recipe makeMocha() {
+		final Recipe r = new Recipe();
+		 r.setChocolate( 5 );
+		    r.setCoffee( 3 );
+		    r.setMilk( 4 );
+		    r.setSugar( 8 );
+		    r.setPrice( 10 );
+		    r.setName( "Mocha" );
+		    return r;
+	}
+	
 	@Test 
 	@Transactional
 	public void apiTesting() throws UnsupportedEncodingException, Exception {
@@ -53,20 +64,15 @@ public class APITest {
 		        .andReturn().getResponse().getContentAsString();
 
 		/* Figure out if the recipe we want is present */
-		if ( !recipe.contains( "Mocha" ) ) {
-		    final Recipe r = new Recipe();
-		    r.setChocolate( 5 );
-		    r.setCoffee( 3 );
-		    r.setMilk( 4 );
-		    r.setSugar( 8 );
-		    r.setPrice( 10 );
-		    r.setName( "Mocha" );
-
+		if (!recipe.contains( "Mocha" ) ) {
+		    final Recipe r = makeMocha();
+		    
 		    mvc.perform( post( "/api/v1/recipes" ).contentType( MediaType.APPLICATION_JSON )
 		            .content( TestUtils.asJsonString( r ) ) ).andExpect( status().isOk() );
 		    
 		    String recipeTest = mvc.perform( get( "/api/v1/recipes" ) ).andDo( print() ).andExpect( status().isOk() )
 			        .andReturn().getResponse().getContentAsString();
+		    //test getting recipes
 		    Assertions.assertTrue(recipeTest.contains("\"Mocha\""));
 		    
 		    final Inventory i = new Inventory(50,50,50,50);
@@ -74,18 +80,18 @@ public class APITest {
 		            .content( TestUtils.asJsonString( i) ) ).andExpect( status().isOk() );
 		    String inventoryTest = mvc.perform( get( "/api/v1/inventory" ) ).andDo( print() ).andExpect( status().isOk() )
 			        .andReturn().getResponse().getContentAsString();
+		    //test if the inventory was added
 		    Assertions.assertTrue(inventoryTest.contains("\"milk\":50"));
 		    Assertions.assertTrue(inventoryTest.contains("\"coffee\":50"));
 		    Assertions.assertTrue(inventoryTest.contains("\"sugar\":50"));
 		    Assertions.assertTrue(inventoryTest.contains("\"chocolate\":50"));
-		    
-		    
 		    
 		    mvc.perform( post( "/api/v1/makecoffee/Mocha" ).contentType( MediaType.APPLICATION_JSON )
 		            .content( TestUtils.asJsonString(350) ) ).andExpect( status().isOk() );
 		    
 		    String inventoryTest2 = mvc.perform( get( "/api/v1/inventory" ) ).andDo( print() ).andExpect( status().isOk() )
 			        .andReturn().getResponse().getContentAsString();
+		    //test if mocha ingredients were succesfully removed from inventory.
 		    Assertions.assertTrue(inventoryTest2.contains("\"milk\":46"));
 		    Assertions.assertTrue(inventoryTest2.contains("\"coffee\":47"));
 		    Assertions.assertTrue(inventoryTest2.contains("\"sugar\":42"));

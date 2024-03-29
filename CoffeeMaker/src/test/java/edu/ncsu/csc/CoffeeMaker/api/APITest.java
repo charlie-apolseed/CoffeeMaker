@@ -145,7 +145,7 @@ public class APITest {
 	            .contentType(MediaType.APPLICATION_JSON))
 	            .andExpect(status().isOk());
 
-	    // get the updated list of recipes after the delete operation
+	    // get the updated list of recipes after the delete operation.
 	    dbRecipes = (List<Recipe>) recipeService.findAll();
 	    Assertions.assertEquals(1, dbRecipes.size());
 

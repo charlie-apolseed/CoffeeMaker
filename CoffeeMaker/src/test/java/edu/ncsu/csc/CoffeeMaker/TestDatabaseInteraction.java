@@ -86,11 +86,11 @@ public class TestDatabaseInteraction {
 		recipeService.save(mocha);
 		
 		Recipe latte = new Recipe();
-		mocha.setName("Latte");
-		mocha.setChocolate(1);
-		mocha.setMilk(5);
-		mocha.setCoffee(50);
-		mocha.setPrice(450);
+		latte.setName("Latte");
+		latte.setChocolate(1);
+		latte.setMilk(5);
+		latte.setCoffee(50);
+		latte.setPrice(450);
 		recipeService.save(latte);
 		
 		

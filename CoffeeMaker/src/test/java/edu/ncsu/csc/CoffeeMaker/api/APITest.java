@@ -2,6 +2,7 @@ package edu.ncsu.csc.CoffeeMaker.api;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -21,14 +22,20 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.List;
 import edu.ncsu.csc.CoffeeMaker.common.TestUtils;
 import edu.ncsu.csc.CoffeeMaker.models.Inventory;
 import edu.ncsu.csc.CoffeeMaker.models.Recipe;
+import edu.ncsu.csc.CoffeeMaker.services.RecipeService;
 
 @ExtendWith ( SpringExtension.class )
 @SpringBootTest
 @AutoConfigureMockMvc
 public class APITest {
+	
+	
+	@Autowired
+	private RecipeService recipeService;
 	/**
 	 * MockMvc uses Spring's testing framework to handle requests to the REST
 	 * API
@@ -101,4 +108,44 @@ public class APITest {
 
 		}
 	}
+	@Test 
+	@Transactional
+	public void validDeleteRecipe() throws UnsupportedEncodingException, Exception {
+	    recipeService.deleteAll();
+	
+	    Recipe mocha = new Recipe();
+	    mocha.setName("Mocha");
+	    mocha.setChocolate(5);
+	    mocha.setMilk(1);
+	    mocha.setCoffee(50);
+	    mocha.setPrice(350);
+	    recipeService.save(mocha);
+
+	    Recipe latte = new Recipe();
+	    latte.setName("Latte");
+	    latte.setChocolate(1);
+	    latte.setMilk(5);
+	    latte.setCoffee(50);
+	    latte.setPrice(450);
+	    recipeService.save(latte);
+	    
+	    // ensure that both are saved
+	    List<Recipe> dbRecipes = (List<Recipe>) recipeService.findAll();
+	    Assertions.assertEquals(2, dbRecipes.size());
+
+	    // delete operation on latte
+	    mvc.perform(delete("/api/v1/recipes/Latte")
+	            .contentType(MediaType.APPLICATION_JSON))
+	            .andExpect(status().isOk());
+
+	    // get the updated list of recipes after the delete operation
+	    dbRecipes = (List<Recipe>) recipeService.findAll();
+	    Assertions.assertEquals(1, dbRecipes.size());
+
+	    // remaining recipe should be mocha
+	    Recipe remainingRecipe = dbRecipes.get(0);
+	    Assertions.assertEquals("Mocha", remainingRecipe.getName());
+	}
 }
+	
+

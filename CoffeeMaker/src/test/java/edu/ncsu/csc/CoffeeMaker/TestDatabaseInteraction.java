@@ -71,4 +71,55 @@ public class TestDatabaseInteraction {
 		Assertions.assertEquals(mocha.getSugar(), dbRecipe.getSugar());
 		Assertions.assertEquals(mocha.getCoffee(), dbRecipe.getCoffee());
 	}
+	
+	@Test
+	@Transactional
+	public void testDeleteRecipes() {
+		recipeService.deleteAll();
+		/*New recipe*/
+		Recipe mocha = new Recipe();
+		mocha.setName("Mocha");
+		mocha.setChocolate(5);
+		mocha.setMilk(1);
+		mocha.setCoffee(50);
+		mocha.setPrice(350);
+		recipeService.save(mocha);
+		
+		Recipe latte = new Recipe();
+		latte.setName("Latte");
+		latte.setChocolate(1);
+		latte.setMilk(5);
+		latte.setCoffee(50);
+		latte.setPrice(450);
+		recipeService.save(latte);
+		
+		
+		List<Recipe> dbRecipes = (List<Recipe>) recipeService.findAll();
+		
+		/*confirm that there are two recipe in the system*/
+		Assertions.assertEquals(2, dbRecipes.size());
+		
+		Assertions.assertEquals(mocha, recipeService.findByName(mocha.getName()));
+		Assertions.assertEquals(latte, recipeService.findByName(latte.getName()));
+		
+		
+		recipeService.delete(latte);
+		
+		dbRecipes = (List<Recipe>) recipeService.findAll();
+		
+		/*confirm that there is only one recipe in the system*/
+		Assertions.assertEquals(1, dbRecipes.size());
+		Assertions.assertEquals(mocha, recipeService.findByName(mocha.getName()));
+		
+		recipeService.delete(mocha);
+		
+		dbRecipes = (List<Recipe>) recipeService.findAll();
+		
+		/*confirm that there are no recipes in the system*/
+		Assertions.assertEquals(0, dbRecipes.size());
+		
+		
+	}
+	
+
 }

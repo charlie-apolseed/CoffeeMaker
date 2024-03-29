@@ -19,6 +19,7 @@ import edu.ncsu.csc.CoffeeMaker.common.TestUtils;
 import edu.ncsu.csc.CoffeeMaker.models.Recipe;
 import edu.ncsu.csc.CoffeeMaker.services.RecipeService;
 
+
 @SpringBootTest
 @AutoConfigureMockMvc
 @ExtendWith ( SpringExtension.class )
@@ -34,6 +35,7 @@ public class APIRecipeTest {
     @Transactional
     public void ensureRecipe () throws Exception {
         service.deleteAll();
+
 
         final Recipe r = new Recipe();
         r.setChocolate( 5 );

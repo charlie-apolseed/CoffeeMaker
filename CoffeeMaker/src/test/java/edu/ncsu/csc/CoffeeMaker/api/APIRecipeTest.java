@@ -17,8 +17,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import edu.ncsu.csc.CoffeeMaker.common.TestUtils;
 import edu.ncsu.csc.CoffeeMaker.models.Recipe;
-import edu.ncsu.csc.CoffeeMaker.services.InventoryService;
 import edu.ncsu.csc.CoffeeMaker.services.RecipeService;
+
 
 @SpringBootTest
 @AutoConfigureMockMvc

@@ -35,7 +35,7 @@ public class APITest {
 	 * MockMvc uses Spring's testing framework to handle requests to the REST
 	 * API
 	 */
-	private MockMvc               mvc;
+	private MockMvc mvc;
 
 	@Autowired
 	private WebApplicationContext context;

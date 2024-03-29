@@ -45,9 +45,6 @@ public class APITest {
 
 	@Autowired
 	private WebApplicationContext context;
-	
-	@Autowired
-    private RecipeService recipeService;
 
 	@Autowired
     private InventoryService inventoryService;

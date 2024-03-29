@@ -24,6 +24,8 @@ import org.springframework.web.context.WebApplicationContext;
 import edu.ncsu.csc.CoffeeMaker.common.TestUtils;
 import edu.ncsu.csc.CoffeeMaker.models.Inventory;
 import edu.ncsu.csc.CoffeeMaker.models.Recipe;
+import edu.ncsu.csc.CoffeeMaker.services.InventoryService;
+import edu.ncsu.csc.CoffeeMaker.services.RecipeService;
 
 @ExtendWith ( SpringExtension.class )
 @SpringBootTest
@@ -37,7 +39,13 @@ public class APITest {
 
 	@Autowired
 	private WebApplicationContext context;
+	
+	@Autowired
+    private RecipeService recipeService;
 
+	@Autowired
+    private InventoryService inventoryService;
+	
 	/**
 	 * Sets up the tests.
 	 */
@@ -60,6 +68,9 @@ public class APITest {
 	@Test 
 	@Transactional
 	public void apiTesting() throws UnsupportedEncodingException, Exception {
+		recipeService.deleteAll();
+		inventoryService.deleteAll();
+		
 		String recipe = mvc.perform( get( "/api/v1/recipes" ) ).andDo( print() ).andExpect( status().isOk() )
 		        .andReturn().getResponse().getContentAsString();
 
@@ -91,7 +102,7 @@ public class APITest {
 		    
 		    String inventoryTest2 = mvc.perform( get( "/api/v1/inventory" ) ).andDo( print() ).andExpect( status().isOk() )
 			        .andReturn().getResponse().getContentAsString();
-		    //test if mocha ingredients were succesfully removed from inventory.
+		    //test if mocha ingredients were successfully removed from inventory.
 		    Assertions.assertTrue(inventoryTest2.contains("\"milk\":46"));
 		    Assertions.assertTrue(inventoryTest2.contains("\"coffee\":47"));
 		    Assertions.assertTrue(inventoryTest2.contains("\"sugar\":42"));

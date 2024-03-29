@@ -26,6 +26,7 @@ import java.util.List;
 import edu.ncsu.csc.CoffeeMaker.common.TestUtils;
 import edu.ncsu.csc.CoffeeMaker.models.Inventory;
 import edu.ncsu.csc.CoffeeMaker.models.Recipe;
+import edu.ncsu.csc.CoffeeMaker.services.InventoryService;
 import edu.ncsu.csc.CoffeeMaker.services.RecipeService;
 
 @ExtendWith ( SpringExtension.class )
@@ -41,6 +42,9 @@ public class APITest {
 	 * API
 	 */
 	private MockMvc               mvc;
+	
+	@Autowired
+	private InventoryService inventoryService;
 
 	@Autowired
 	private WebApplicationContext context;
@@ -51,6 +55,16 @@ public class APITest {
 	@BeforeEach
 	public void setup () {
 	    mvc = MockMvcBuilders.webAppContextSetup( context ).build();
+	    
+	    final Inventory ivt = inventoryService.getInventory();
+
+	    /*Set the inventory to empty to begin */
+        ivt.setChocolate(0 );
+        ivt.setCoffee( 0 );
+        ivt.setMilk( 0 );
+        ivt.setSugar( 0 );
+
+        inventoryService.save( ivt );
 	}
 	
 	private Recipe makeMocha() {

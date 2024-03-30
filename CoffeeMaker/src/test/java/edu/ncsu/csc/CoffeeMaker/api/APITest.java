@@ -41,7 +41,11 @@ public class APITest {
 	 * MockMvc uses Spring's testing framework to handle requests to the REST
 	 * API
 	 */
-	private MockMvc mvc;
+
+	private MockMvc               mvc;
+	
+	@Autowired
+	private InventoryService inventoryService;
 
 	@Autowired
 	private WebApplicationContext context;
@@ -55,6 +59,16 @@ public class APITest {
 	@BeforeEach
 	public void setup () {
 	    mvc = MockMvcBuilders.webAppContextSetup( context ).build();
+	    
+	    final Inventory ivt = inventoryService.getInventory();
+
+	    /*Set the inventory to empty to begin */
+        ivt.setChocolate(0 );
+        ivt.setCoffee( 0 );
+        ivt.setMilk( 0 );
+        ivt.setSugar( 0 );
+
+        inventoryService.save( ivt );
 	}
 	
 	private Recipe makeMocha() {

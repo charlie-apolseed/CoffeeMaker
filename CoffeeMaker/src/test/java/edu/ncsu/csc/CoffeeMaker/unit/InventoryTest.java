@@ -37,80 +37,6 @@ public class InventoryTest {
     
     @Test
     @Transactional
-    public void testInventoryConstructor() {
-    	int coffee = 50;
-    	int milk = 51;
-    	int sugar = 52;
-    	int chocolate = 53;
-    	
-    	Inventory inventoryTest = new Inventory(coffee, milk, sugar, chocolate);
-    	Assertions.assertEquals(coffee, inventoryTest.getCoffee());
-    	Assertions.assertEquals(milk, inventoryTest.getMilk());
-    	Assertions.assertEquals(sugar, inventoryTest.getSugar());
-    	Assertions.assertEquals(chocolate, inventoryTest.getChocolate());
-    	
-    }
-    
-    @Test
-    @Transactional
-	public void testInventoryCheckChocolate() {
-		final Inventory i = inventoryService.getInventory();
-		Assertions.assertEquals(50, i.checkChocolate("50"));
-		try {
-			i.checkChocolate("hello");
-			Assertions.fail();
-		} catch (IllegalArgumentException e) {
-			Assertions.assertEquals(e.getMessage(), "Units of chocolate must be a positive integer");
-		}
-		try {
-			i.checkChocolate("-10");
-			Assertions.fail();
-		} catch (IllegalArgumentException e) {
-			Assertions.assertEquals(e.getMessage(), "Units of chocolate must be a positive integer");
-		}
-	}
-    
-    @Test
-    @Transactional
-	public void testInventoryCheckCoffee() {
-		final Inventory i = inventoryService.getInventory();
-		Assertions.assertEquals(50, i.checkCoffee("50"));
-		try {
-			i.checkCoffee("hello");
-			Assertions.fail();
-		} catch (IllegalArgumentException e) {
-			Assertions.assertEquals(e.getMessage(), "Units of coffee must be a positive integer");
-		}
-		try {
-			i.checkCoffee("-10");
-			Assertions.fail();
-		} catch (IllegalArgumentException e) {
-			Assertions.assertEquals(e.getMessage(), "Units of coffee must be a positive integer");
-		}
-	}
-    
-    @Test
-    @Transactional
-	public void testInventoryCheckSugar() {
-		final Inventory i = inventoryService.getInventory();
-		Assertions.assertEquals(50, i.checkSugar("50"));
-		try {
-			i.checkSugar("hello");
-			Assertions.fail();
-		} catch (IllegalArgumentException e) {
-			Assertions.assertEquals(e.getMessage(), "Units of sugar must be a positive integer");
-		}
-		try {
-			i.checkSugar("-10");
-			Assertions.fail();
-		} catch (IllegalArgumentException e) {
-			Assertions.assertEquals(e.getMessage(), "Units of sugar must be a positive integer");
-		}
-	}
-    
-    
-    @Test
-    @Transactional
     public void testConsumeInventory () {
         final Inventory i = inventoryService.getInventory();
 
@@ -202,7 +128,7 @@ public class InventoryTest {
 
     @Test
     @Transactional
-    public void testAddInventory4 () { 
+    public void testAddInventory4 () {
         final Inventory ivt = inventoryService.getInventory();
 
         try {

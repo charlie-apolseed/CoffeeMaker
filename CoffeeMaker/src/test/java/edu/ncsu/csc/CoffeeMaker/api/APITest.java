@@ -50,8 +50,6 @@ public class APITest {
 	@Autowired
 	private WebApplicationContext context;
 
-	@Autowired
-    private InventoryService inventoryService;
 	
 	/**
 	 * Sets up the tests.

@@ -874,3 +874,330 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact antlr:antlr:j
 2024-03-07 11:01:25,641 [Worker-51: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2024-03-07 11:01:25,643 [Worker-51: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2024-03-07 11:01:25,644 [Worker-51: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+<<<<<<< HEAD
+=======
+2024-03-28 16:17:33,157 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 16:17:33,159 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-28 16:17:33,165 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 8 resources
+2024-03-28 16:17:33,171 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 16:17:33,171 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-28 16:41:03,862 [Worker-71: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 16:41:03,866 [Worker-71: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 16:41:03,867 [Worker-71: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 16:41:03,871 [Worker-71: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 16:41:03,871 [Worker-71: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-28 16:41:54,241 [Worker-71: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 16:41:54,247 [Worker-71: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 16:41:54,250 [Worker-71: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 16:41:54,253 [Worker-71: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 16:41:54,254 [Worker-71: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-28 17:48:44,785 [Worker-78: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 17:48:44,790 [Worker-78: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 17:48:44,791 [Worker-78: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 17:48:44,796 [Worker-78: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 17:48:44,796 [Worker-78: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-28 17:50:52,972 [Worker-79: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 17:50:52,979 [Worker-79: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 17:50:52,980 [Worker-79: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 17:50:52,997 [Worker-79: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 17:50:52,998 [Worker-79: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-28 17:51:09,579 [DefaultMetadataResolver-0-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-starter-jdbc/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-28 17:51:09,572 [DefaultMetadataResolver-0-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-jdbc/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-28 17:51:09,616 [DefaultMetadataResolver-0-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-jdbc/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-28 17:51:09,654 [Worker-79: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-jdbc:2.3.7.BUILD-SNAPSHOT
+2024-03-28 17:51:09,889 [DefaultMetadataResolver-1-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-starter-json/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-28 17:51:09,893 [DefaultMetadataResolver-1-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-json/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-28 17:51:09,899 [DefaultMetadataResolver-1-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-json/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-28 17:51:09,906 [Worker-79: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-json:2.3.7.BUILD-SNAPSHOT
+2024-03-28 17:51:10,383 [DefaultMetadataResolver-2-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-test/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-28 17:51:10,383 [DefaultMetadataResolver-2-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-test/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-28 17:51:10,386 [DefaultMetadataResolver-2-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-test/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-28 17:51:10,389 [Worker-79: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-test:2.3.7.BUILD-SNAPSHOT
+2024-03-28 17:51:10,485 [DefaultMetadataResolver-3-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-devtools/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-28 17:51:10,553 [DefaultMetadataResolver-3-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-devtools/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-28 17:51:10,556 [DefaultMetadataResolver-3-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-devtools/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-28 17:51:10,559 [Worker-79: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-devtools:2.3.7.BUILD-SNAPSHOT
+2024-03-28 17:51:10,746 [DefaultMetadataResolver-4-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-autoconfigure/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-28 17:51:10,748 [DefaultMetadataResolver-4-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-autoconfigure/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-28 17:51:10,765 [DefaultMetadataResolver-4-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-autoconfigure/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-28 17:51:10,770 [Worker-79: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-autoconfigure:2.3.7.BUILD-SNAPSHOT
+2024-03-28 17:51:40,795 [Worker-80: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 17:51:40,803 [Worker-80: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 17:51:40,804 [Worker-80: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 17:51:40,817 [Worker-80: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 17:51:40,820 [Worker-80: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-28 17:51:52,441 [Worker-79: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-jdbc:2.3.7.BUILD-SNAPSHOT
+2024-03-28 17:51:52,443 [Worker-79: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-json:2.3.7.BUILD-SNAPSHOT
+2024-03-28 17:51:52,446 [Worker-79: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-test:2.3.7.BUILD-SNAPSHOT
+2024-03-28 17:51:52,448 [Worker-79: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-devtools:2.3.7.BUILD-SNAPSHOT
+2024-03-28 17:51:52,451 [Worker-79: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-autoconfigure:2.3.7.BUILD-SNAPSHOT
+2024-03-28 18:00:45,609 [Worker-84: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 18:00:45,614 [Worker-84: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 18:00:45,615 [Worker-84: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 18:00:45,618 [Worker-84: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 18:00:45,618 [Worker-84: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-28 18:01:03,178 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 18:01:03,185 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 18:01:03,186 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 18:01:03,189 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 18:01:03,190 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-28 18:01:13,095 [Worker-89: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 18:01:13,096 [Worker-89: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 18:01:13,097 [Worker-89: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 18:01:13,098 [Worker-89: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 18:01:13,099 [Worker-89: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-28 18:01:25,282 [Worker-90: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 18:01:25,284 [Worker-90: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 18:01:25,284 [Worker-90: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 18:01:25,287 [Worker-90: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 18:01:25,287 [Worker-90: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-28 18:01:36,100 [Worker-90: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-jdbc:2.3.7.BUILD-SNAPSHOT
+2024-03-28 18:01:36,106 [Worker-90: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-json:2.3.7.BUILD-SNAPSHOT
+2024-03-28 18:01:36,111 [Worker-90: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-test:2.3.7.BUILD-SNAPSHOT
+2024-03-28 18:01:36,116 [Worker-90: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-devtools:2.3.7.BUILD-SNAPSHOT
+2024-03-28 18:01:36,118 [Worker-90: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-autoconfigure:2.3.7.BUILD-SNAPSHOT
+2024-03-28 18:05:44,838 [Worker-89: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 18:05:44,841 [Worker-89: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 18:05:44,842 [Worker-89: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 18:05:44,845 [Worker-89: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 18:05:44,846 [Worker-89: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-28 18:07:18,758 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 18:07:18,764 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 18:07:18,765 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 18:07:18,775 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 18:07:18,776 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-28 18:07:25,248 [Worker-94: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-jdbc:2.3.7.BUILD-SNAPSHOT
+2024-03-28 18:07:25,253 [Worker-94: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-json:2.3.7.BUILD-SNAPSHOT
+2024-03-28 18:07:25,255 [Worker-94: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-test:2.3.7.BUILD-SNAPSHOT
+2024-03-28 18:07:25,258 [Worker-94: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-devtools:2.3.7.BUILD-SNAPSHOT
+2024-03-28 18:07:25,260 [Worker-94: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-autoconfigure:2.3.7.BUILD-SNAPSHOT
+2024-03-28 18:08:04,056 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 18:08:04,060 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 18:08:04,061 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 18:08:04,066 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 18:08:04,066 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-28 18:08:50,634 [Worker-95: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 18:08:50,636 [Worker-95: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 18:08:50,637 [Worker-95: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-28 18:08:50,640 [Worker-95: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-28 18:08:50,641 [Worker-95: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-28 18:08:58,242 [Worker-91: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-jdbc:2.3.7.BUILD-SNAPSHOT
+2024-03-28 18:08:58,245 [Worker-91: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-json:2.3.7.BUILD-SNAPSHOT
+2024-03-28 18:08:58,247 [Worker-91: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-test:2.3.7.BUILD-SNAPSHOT
+2024-03-28 18:08:58,249 [Worker-91: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-devtools:2.3.7.BUILD-SNAPSHOT
+2024-03-28 18:08:58,252 [Worker-91: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-autoconfigure:2.3.7.BUILD-SNAPSHOT
+2024-03-28 18:11:08,573 [Worker-91: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-jdbc:2.3.7.BUILD-SNAPSHOT
+2024-03-28 18:11:08,577 [Worker-91: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-json:2.3.7.BUILD-SNAPSHOT
+2024-03-28 18:11:08,579 [Worker-91: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-test:2.3.7.BUILD-SNAPSHOT
+2024-03-28 18:11:08,581 [Worker-91: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-devtools:2.3.7.BUILD-SNAPSHOT
+2024-03-28 18:11:08,584 [Worker-91: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-autoconfigure:2.3.7.BUILD-SNAPSHOT
+2024-03-31 14:14:19,730 [Worker-12: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2024-03-31 14:14:29,537 [DefaultMetadataResolver-0-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-parent/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:29,544 [DefaultMetadataResolver-0-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-starter-parent/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:29,602 [DefaultMetadataResolver-0-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-parent/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:29,705 [DefaultMetadataResolver-1-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-dependencies/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:29,711 [DefaultMetadataResolver-1-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-dependencies/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:29,716 [DefaultMetadataResolver-1-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-dependencies/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:33,562 [DefaultMetadataResolver-2-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-maven-plugin/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:33,565 [DefaultMetadataResolver-2-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-maven-plugin/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:33,575 [DefaultMetadataResolver-2-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-maven-plugin/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:35,786 [Worker-18: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: edu.ncsu.csc:CoffeeMaker:0.0.1-SNAPSHOT @ /Users/ulemjmunkhtur/Desktop/development/project2-t-02/CoffeeMaker/pom.xml.
+2024-03-31 14:14:35,868 [DefaultMetadataResolver-3-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-starter-data-jpa/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:35,872 [DefaultMetadataResolver-3-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-data-jpa/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:35,877 [DefaultMetadataResolver-3-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-data-jpa/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:35,941 [DefaultMetadataResolver-4-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-starter-aop/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:35,945 [DefaultMetadataResolver-4-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-aop/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:35,947 [DefaultMetadataResolver-4-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-aop/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:35,994 [DefaultMetadataResolver-5-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:35,994 [DefaultMetadataResolver-5-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-starter/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:35,996 [DefaultMetadataResolver-5-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,043 [DefaultMetadataResolver-6-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,046 [DefaultMetadataResolver-6-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,049 [DefaultMetadataResolver-6-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,106 [DefaultMetadataResolver-7-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-autoconfigure/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,111 [DefaultMetadataResolver-7-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-autoconfigure/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,113 [DefaultMetadataResolver-7-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-autoconfigure/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,151 [DefaultMetadataResolver-8-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-starter-logging/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,156 [DefaultMetadataResolver-8-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-logging/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,158 [DefaultMetadataResolver-8-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-logging/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,277 [DefaultMetadataResolver-9-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-starter-jdbc/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,282 [DefaultMetadataResolver-9-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-jdbc/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,284 [DefaultMetadataResolver-9-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-jdbc/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,568 [DefaultMetadataResolver-10-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-thymeleaf/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,571 [DefaultMetadataResolver-10-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-thymeleaf/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,578 [DefaultMetadataResolver-10-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-starter-thymeleaf/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,661 [DefaultMetadataResolver-11-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-starter-web/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,667 [DefaultMetadataResolver-11-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-web/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,669 [DefaultMetadataResolver-11-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-web/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,720 [DefaultMetadataResolver-12-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-starter-json/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,726 [DefaultMetadataResolver-12-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-json/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,732 [DefaultMetadataResolver-12-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-json/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,937 [DefaultMetadataResolver-13-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-tomcat/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,937 [DefaultMetadataResolver-13-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-starter-tomcat/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:36,947 [DefaultMetadataResolver-13-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-tomcat/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:37,040 [DefaultMetadataResolver-14-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-test/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:37,041 [DefaultMetadataResolver-14-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-starter-test/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:37,046 [DefaultMetadataResolver-14-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-starter-test/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:37,152 [DefaultMetadataResolver-15-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-test/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:37,156 [DefaultMetadataResolver-15-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-test/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:37,175 [DefaultMetadataResolver-15-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-test/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:37,282 [DefaultMetadataResolver-16-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-test-autoconfigure/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:37,282 [DefaultMetadataResolver-16-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-test-autoconfigure/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:37,295 [DefaultMetadataResolver-16-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-test-autoconfigure/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:37,480 [DefaultMetadataResolver-17-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/milestone/org/springframework/boot/spring-boot-devtools/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:37,486 [DefaultMetadataResolver-17-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-devtools/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:37,489 [DefaultMetadataResolver-17-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.spring.io/snapshot/org/springframework/boot/spring-boot-devtools/2.3.7.BUILD-SNAPSHOT/maven-metadata.xml
+2024-03-31 14:14:37,575 [Worker-18: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact org.hibernate:hibernate-validator:jar:6.1.5.Final has been relocated to org.hibernate.validator:hibernate-validator:jar:6.1.5.Final
+2024-03-31 14:14:39,295 [Worker-18: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 14:14:39,314 [Worker-18: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 14:14:39,335 [Worker-18: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 8 resources
+2024-03-31 14:14:39,354 [Worker-18: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 14:14:39,355 [Worker-18: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 14:14:39,492 [Worker-2: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-jdbc:2.3.7.BUILD-SNAPSHOT
+2024-03-31 14:14:39,499 [Worker-2: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-json:2.3.7.BUILD-SNAPSHOT
+2024-03-31 14:14:39,505 [Worker-2: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-test:2.3.7.BUILD-SNAPSHOT
+2024-03-31 14:14:39,508 [Worker-2: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-devtools:2.3.7.BUILD-SNAPSHOT
+2024-03-31 14:14:39,511 [Worker-2: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-autoconfigure:2.3.7.BUILD-SNAPSHOT
+2024-03-31 14:14:40,313 [Worker-29: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: edu.ncsu.csc:CoffeeMaker:0.0.1-SNAPSHOT @ /Users/ulemjmunkhtur/Desktop/development/project2-t-02/CoffeeMaker/pom.xml.
+2024-03-31 14:14:40,805 [Worker-29: Updating Maven Dependencies] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact org.hibernate:hibernate-validator:jar:6.1.5.Final has been relocated to org.hibernate.validator:hibernate-validator:jar:6.1.5.Final
+2024-03-31 14:14:41,910 [Worker-28: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-jdbc:2.3.7.BUILD-SNAPSHOT
+2024-03-31 14:14:41,918 [Worker-28: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-json:2.3.7.BUILD-SNAPSHOT
+2024-03-31 14:14:41,925 [Worker-28: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-test:2.3.7.BUILD-SNAPSHOT
+2024-03-31 14:14:41,931 [Worker-28: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-devtools:2.3.7.BUILD-SNAPSHOT
+2024-03-31 14:14:41,934 [Worker-28: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-autoconfigure:2.3.7.BUILD-SNAPSHOT
+2024-03-31 14:15:00,251 [Worker-9: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-jdbc:2.3.7.BUILD-SNAPSHOT
+2024-03-31 14:15:00,262 [Worker-9: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-json:2.3.7.BUILD-SNAPSHOT
+2024-03-31 14:15:00,265 [Worker-9: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-test:2.3.7.BUILD-SNAPSHOT
+2024-03-31 14:15:00,268 [Worker-9: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-devtools:2.3.7.BUILD-SNAPSHOT
+2024-03-31 14:15:00,270 [Worker-9: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-autoconfigure:2.3.7.BUILD-SNAPSHOT
+2024-03-31 14:15:21,899 [Worker-20: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-jdbc:2.3.7.BUILD-SNAPSHOT
+2024-03-31 14:15:21,907 [Worker-20: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-json:2.3.7.BUILD-SNAPSHOT
+2024-03-31 14:15:21,910 [Worker-20: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-test:2.3.7.BUILD-SNAPSHOT
+2024-03-31 14:15:21,914 [Worker-20: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-devtools:2.3.7.BUILD-SNAPSHOT
+2024-03-31 14:15:21,917 [Worker-20: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-autoconfigure:2.3.7.BUILD-SNAPSHOT
+2024-03-31 15:14:18,955 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:14:18,977 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:14:18,992 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:14:19,030 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:14:19,031 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 15:14:39,188 [Worker-44: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:14:39,195 [Worker-44: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:14:39,197 [Worker-44: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:14:39,201 [Worker-44: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:14:39,201 [Worker-44: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 15:14:55,001 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:14:55,007 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:14:55,009 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:14:55,022 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:14:55,024 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 15:15:47,826 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:15:47,837 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:15:47,838 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:15:47,862 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:15:47,863 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 15:19:44,345 [Worker-41: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:19:44,357 [Worker-41: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:19:44,362 [Worker-41: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:19:44,369 [Worker-41: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:19:44,370 [Worker-41: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 15:21:24,562 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:21:24,569 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:21:24,570 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:21:24,573 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:21:24,574 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 15:28:31,179 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:28:31,184 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:28:31,185 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:28:31,198 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:28:31,198 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 15:29:46,391 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:29:46,400 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:29:46,400 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:29:46,414 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:29:46,415 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 15:32:55,201 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:32:55,212 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:32:55,213 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:32:55,251 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:32:55,256 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 15:35:52,841 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:35:52,848 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:35:52,849 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:35:52,856 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:35:52,857 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 15:40:04,263 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:40:04,270 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:40:04,273 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:40:04,276 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:40:04,277 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 15:40:26,495 [Worker-51: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:40:26,498 [Worker-51: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:40:26,502 [Worker-51: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:40:26,508 [Worker-51: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:40:26,509 [Worker-51: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 15:40:56,924 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:40:56,938 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:40:56,939 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:40:56,949 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:40:56,950 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 15:41:05,882 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:41:05,883 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:41:05,883 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:41:05,891 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:41:05,891 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 15:41:34,113 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:41:34,130 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:41:34,132 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:41:34,144 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:41:34,146 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 15:41:39,273 [Worker-51: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:41:39,275 [Worker-51: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:41:39,277 [Worker-51: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:41:39,281 [Worker-51: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:41:39,282 [Worker-51: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 15:41:49,880 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:41:49,881 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:41:49,882 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:41:49,889 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:41:49,889 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 15:41:58,802 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:41:58,811 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:41:58,812 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:41:58,819 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:41:58,819 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 15:42:04,529 [Worker-53: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-jdbc:2.3.7.BUILD-SNAPSHOT
+2024-03-31 15:42:04,539 [Worker-53: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-json:2.3.7.BUILD-SNAPSHOT
+2024-03-31 15:42:04,545 [Worker-53: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-test:2.3.7.BUILD-SNAPSHOT
+2024-03-31 15:42:04,551 [Worker-53: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-devtools:2.3.7.BUILD-SNAPSHOT
+2024-03-31 15:42:04,556 [Worker-53: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-autoconfigure:2.3.7.BUILD-SNAPSHOT
+2024-03-31 15:42:38,863 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:42:38,883 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:42:38,885 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:42:38,903 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:42:38,904 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 15:42:51,676 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:42:51,676 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:42:51,677 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:42:51,681 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:42:51,682 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 15:42:57,706 [Worker-49: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-jdbc:2.3.7.BUILD-SNAPSHOT
+2024-03-31 15:42:57,712 [Worker-49: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-json:2.3.7.BUILD-SNAPSHOT
+2024-03-31 15:42:57,714 [Worker-49: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-test:2.3.7.BUILD-SNAPSHOT
+2024-03-31 15:42:57,716 [Worker-49: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-devtools:2.3.7.BUILD-SNAPSHOT
+2024-03-31 15:42:57,718 [Worker-49: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-autoconfigure:2.3.7.BUILD-SNAPSHOT
+2024-03-31 15:43:23,508 [Worker-55: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-jdbc:2.3.7.BUILD-SNAPSHOT
+2024-03-31 15:43:23,513 [Worker-55: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-starter-json:2.3.7.BUILD-SNAPSHOT
+2024-03-31 15:43:23,518 [Worker-55: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-test:2.3.7.BUILD-SNAPSHOT
+2024-03-31 15:43:23,521 [Worker-55: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-devtools:2.3.7.BUILD-SNAPSHOT
+2024-03-31 15:43:23,525 [Worker-55: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.springframework.boot:spring-boot-autoconfigure:2.3.7.BUILD-SNAPSHOT
+2024-03-31 15:44:53,461 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:44:53,467 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:44:53,468 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:44:53,476 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:44:53,477 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2024-03-31 15:45:04,156 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:45:04,157 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:45:04,157 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2024-03-31 15:45:04,159 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-03-31 15:45:04,159 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+>>>>>>> c43317337bf43aec76d07f0a9153260fe9ae0bca

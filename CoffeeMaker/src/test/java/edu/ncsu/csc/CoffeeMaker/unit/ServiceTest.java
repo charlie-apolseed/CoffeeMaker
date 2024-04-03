@@ -30,9 +30,11 @@ public class ServiceTest {
     private Recipe r1;
     private Recipe r2;
 
+    @Transactional
     @BeforeEach
-    public void setUp() {   
-        r1 = new Recipe();
+    public void setUp() { 
+    	service.deleteAll();
+    	r1 = new Recipe();
         r1.setName( "Black Coffee" );
         r1.setPrice( 1 );
         r1.setCoffee( 1 );

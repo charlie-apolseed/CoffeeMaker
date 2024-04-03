@@ -295,7 +295,148 @@ public class RecipeTest {
         Assertions.assertEquals( 1, service.count(), "Editing a recipe shouldn't duplicate it" );
 
     }
+    
+    /**
+     * Tests the checkRecipe method
+     */
+    @Test
+    public void testCheckRecipe() {
+    	
+    	final Recipe recipe = createRecipe("Coffee", 10, 0, 0, 0, 0);
+    	
+    	//Check recipe should return true when all ingredients are zero
+    	Assertions.assertEquals(true, recipe.checkRecipe());
+    	
+    	
+    	
+    	recipe.setChocolate(10);
+    	
+    	Assertions.assertEquals(false, recipe.checkRecipe());
+    	
+    	recipe.setSugar(10);
+    	
+    	Assertions.assertEquals(false, recipe.checkRecipe());
+    	
+    	recipe.setMilk(10);
+    	
+    	Assertions.assertEquals(false, recipe.checkRecipe());
+    	
+    	recipe.setCoffee(10);
+    	
+    	Assertions.assertEquals(false, recipe.checkRecipe());
+    	
+    	
+    }
+    
+    /**
+     * Tests the updateRecipe method
+     */
+    @Test
+    public void testUpdateRecipe() {
+    	
+    	Recipe recipe = createRecipe("Coffee", 50, 1, 2, 3, 4);
+    	
+    	Assertions.assertEquals("Coffee", recipe.getName());
+    	Assertions.assertEquals(50, recipe.getPrice());
+    	Assertions.assertEquals(1, recipe.getCoffee());
+    	Assertions.assertEquals(2, recipe.getMilk());
+    	Assertions.assertEquals(3, recipe.getSugar());
+    	Assertions.assertEquals(4, recipe.getChocolate());
+    	
+    	//updating price
+    	Recipe updateRecipe = createRecipe("Coffee", 60, 1, 2, 3, 4);
+    	recipe.updateRecipe(updateRecipe);
+    	
+    	Assertions.assertEquals("Coffee", recipe.getName());
+    	Assertions.assertEquals(60, recipe.getPrice());
+    	Assertions.assertEquals(1, recipe.getCoffee());
+    	Assertions.assertEquals(2, recipe.getMilk());
+    	Assertions.assertEquals(3, recipe.getSugar());
+    	Assertions.assertEquals(4, recipe.getChocolate());
+    	
+    	//updating coffee
+    	updateRecipe = createRecipe("Coffee", 60, 5, 2, 3, 4);
+    	recipe.updateRecipe(updateRecipe);
+    	
+    	Assertions.assertEquals("Coffee", recipe.getName());
+    	Assertions.assertEquals(60, recipe.getPrice());
+    	Assertions.assertEquals(5, recipe.getCoffee());
+    	Assertions.assertEquals(2, recipe.getMilk());
+    	Assertions.assertEquals(3, recipe.getSugar());
+    	Assertions.assertEquals(4, recipe.getChocolate());
+    	
+    	//updating milk
+    	updateRecipe = createRecipe("Coffee", 60, 5, 6, 3, 4);
+    	recipe.updateRecipe(updateRecipe);
+    	
+    	Assertions.assertEquals("Coffee", recipe.getName());
+    	Assertions.assertEquals(60, recipe.getPrice());
+    	Assertions.assertEquals(5, recipe.getCoffee());
+    	Assertions.assertEquals(6, recipe.getMilk());
+    	Assertions.assertEquals(3, recipe.getSugar());
+    	Assertions.assertEquals(4, recipe.getChocolate());
+    	
+    	//updating sugar
+    	updateRecipe = createRecipe("Coffee", 60, 5, 6, 7, 4);
+    	recipe.updateRecipe(updateRecipe);
+    	
+    	Assertions.assertEquals("Coffee", recipe.getName());
+    	Assertions.assertEquals(60, recipe.getPrice());
+    	Assertions.assertEquals(5, recipe.getCoffee());
+    	Assertions.assertEquals(6, recipe.getMilk());
+    	Assertions.assertEquals(7, recipe.getSugar());
+    	Assertions.assertEquals(4, recipe.getChocolate());
+    	
+    	//updating chocolate
+    	updateRecipe = createRecipe("Coffee", 60, 5, 6, 7, 8);
+    	recipe.updateRecipe(updateRecipe);
+    	
+    	Assertions.assertEquals("Coffee", recipe.getName());
+    	Assertions.assertEquals(60, recipe.getPrice());
+    	Assertions.assertEquals(5, recipe.getCoffee());
+    	Assertions.assertEquals(6, recipe.getMilk());
+    	Assertions.assertEquals(7, recipe.getSugar());
+    	Assertions.assertEquals(8, recipe.getChocolate());
+    	
+    	
+    }
+    
+    /**
+     * Tests equals method
+     */
+    @Test
+    public void testEquals() {
+    	
+    	Recipe recipe = createRecipe(null, 50, 1, 2, 3, 4);
+    	
+    	//equal to itself
+    	Assertions.assertTrue(recipe.equals(recipe));
+    	//not equal to objects of other type
+    	Assertions.assertFalse(recipe.equals("Coffee"));
+    	//not equal to null object
+    	Assertions.assertFalse(recipe.equals(null));
+    	
+    	Recipe other = createRecipe("Coffee", 1, 2, 3, 4, 5);
+    	
+    	//not equal when different name
+    	Assertions.assertFalse(recipe.equals(other));
+    	
+    	recipe.setName("Mocha");
+    	
+    	//not equal when different name
+    	Assertions.assertFalse(recipe.equals(other));
+    	
+    	recipe.setName("Coffee");
+    	
+    	//equal when same name
+    	Assertions.assertTrue(recipe.equals(other));
+    	
+    	
+    }
+    
 
+    
+    
     private Recipe createRecipe ( final String name, final Integer price, final Integer coffee, final Integer milk,
             final Integer sugar, final Integer chocolate ) {
         final Recipe recipe = new Recipe();

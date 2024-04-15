@@ -16,7 +16,7 @@ public class MappingController {
 
     /**
      * On a GET request to /index, the IndexController will return
-     * /src/main/resources/templates/index.html.
+     * /src/main/resources/templates/homepage.html.
      *
      * @param model
      *            underlying UI model
@@ -24,12 +24,12 @@ public class MappingController {
      */
     @GetMapping ( { "/index", "/" } )
     public String index ( final Model model ) {
-        return "index";
+        return "homepage";
     }
 
     /**
      * On a GET request to /recipe, the RecipeController will return
-     * /src/main/resources/templates/recipe.html.
+     * /src/main/resources/templates/addRecipePopulated.html.
      *
      * @param model
      *            underlying UI model
@@ -116,9 +116,24 @@ public class MappingController {
      * @return contents of the page
      */
     @GetMapping ( { "/addingredient", "/addingredient.html" } )
-    public String addIngredientForm ( final Model model ) {
-        return "addrecipe";
+    public String addIngredient ( final Model model ) {
+        return "addingredient";
     }
+    
+    /**
+     * On a GET request to /addingredientform, the MakeCoffeeController will return
+     * /src/main/resources/templates/addingredientform.html.
+     *
+     * @param model
+     *            underlying UI model
+     * @return contents of the page
+     */
+    @GetMapping ( { "/addingredientform", "/addingredientform.html" } )
+    public String addIngredientForm ( final Model model ) {
+        return "addingredientform";
+    }
+    
+    
 
 
 }

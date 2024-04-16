@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Add Ingredient Form</title>
+    <style>
+        .left-align {
+            text-align: left;
+            border: 2px solid black;
+            padding: 5px;
+        }
+
+        /* margin for space */
+        .mb-space {
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row justify-content-between mt-3">
+        <div class="col-4">
+            <button type="button" class="btn btn-light btn-outline-dark p-3 m-1 mx-5">&lt; Cancel</button>
+        </div>
+        <div class="col-auto">
+            <h1> Add Ingredients </h1>
+        </div>
+        <div class="col-4">
+        </div>    
+    <!-- crearing the form -->
+    <div class="d-flex justify-content-center mt-5">
+        <div class="col-md-6">
+            <form>
+                <div class="mb-3">
+                    <label for="ingredientName" class="form-label">Name*:</label>
+                    <input type="text" class="form-control" id="ingredientName" placeholder="field required">
+                </div>
+                <div class="mb-3">
+                    <label for="ingredientQuantity" class="form-label">Quantity:</label>
+                    <input type="text" class="form-control" id="ingredientQuantity">
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <button class="btn" type="submit" style="border: 2px solid black;">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

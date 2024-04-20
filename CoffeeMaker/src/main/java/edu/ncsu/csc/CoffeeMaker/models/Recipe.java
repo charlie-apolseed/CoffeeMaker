@@ -59,6 +59,11 @@ public class Recipe extends DomainObject {
      * @return true if all ingredient fields are 0, otherwise return false
      */
     public boolean checkRecipe () {
+    	for (Ingredient ingredient: ingredients) {
+    		if (ingredient.amount > 0) {
+    			return false;
+    		}
+    	}
     	return true;
     }
 

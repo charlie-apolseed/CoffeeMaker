@@ -29,8 +29,8 @@ public class Ingredient extends DomainObject {
 	 */
 	public Ingredient(String name, Integer amount) {
 		super();
-		this.name = name;
-		this.amount = amount;
+		setName(name);
+		setAmount(amount);
 	}
 	
 	/**
@@ -66,24 +66,6 @@ public class Ingredient extends DomainObject {
 			throw new IllegalArgumentException("Amount cannot be negative");
 		}
 		this.amount = amount;
-	}
-	
-	/**
-	 * Adds the given int to amount
-	 * 
-	 * @param addAmount amount to add
-	 */
-	public void addAmount(int addAmount) {
-		this.amount += addAmount;
-	}
-	
-	/**
-	 * Removes the given int from amount 
-	 * 
-	 * @param removeAmount amount to remove
-	 */
-	public void removeAmount(int removeAmount) {
-		this.amount -= removeAmount;
 	}
 
 	

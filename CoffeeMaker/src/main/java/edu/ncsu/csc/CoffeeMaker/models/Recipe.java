@@ -34,7 +34,7 @@ public class Recipe extends DomainObject {
     private Integer price;
     
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private final List<Ingredient> ingredients;
+    private List<Ingredient> ingredients;
 
     /**
      * Creates a default recipe for the coffee maker.
@@ -125,6 +125,17 @@ public class Recipe extends DomainObject {
      */
     public void setPrice ( final Integer price ) {
         this.price = price;
+    }
+    
+    /**
+     * Updates recipe ingredients and price to match the given recipe
+     * 
+     * @param r given recipe
+     */
+    public void updateRecipe(Recipe r) {
+    	this.ingredients = r.getIngredients();
+    	setPrice(r.price);
+    	
     }
 
     @Override

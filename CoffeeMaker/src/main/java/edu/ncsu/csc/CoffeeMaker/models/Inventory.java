@@ -77,8 +77,7 @@ public class Inventory extends DomainObject {
 		// Loop through the inventory being added. For each name, if the ingredient is
 		// in the system
 		// (i.e. the current ingredients list has the ingredient) add the quantity of
-		// the ingredient
-		// in the new inventory to the quantity already associated with that ingredient,
+		// the ingredient in the new inventory to the quantity already associated with that ingredient,
 		// otherwise just add the ingredient.
 		for (Ingredient newIngredient : addInventory.getIngredients()) {
 			// Indicator used to keep track of whether the ingredient was added already or

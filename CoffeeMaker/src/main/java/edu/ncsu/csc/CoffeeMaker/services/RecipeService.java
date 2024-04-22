@@ -19,6 +19,7 @@ import edu.ncsu.csc.CoffeeMaker.repositories.RecipeRepository;
  */
 @Component
 @Transactional
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class RecipeService extends Service<Recipe, Long> {
 
     /**
@@ -28,7 +29,7 @@ public class RecipeService extends Service<Recipe, Long> {
     @Autowired
     private RecipeRepository recipeRepository;
 
-    @Override
+	@Override
     protected JpaRepository getRepository () {
         return recipeRepository;
     }

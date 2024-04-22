@@ -1,5 +1,8 @@
 package edu.ncsu.csc.CoffeeMaker.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -69,10 +72,17 @@ public class APIIngredientController extends APIController{
     	}
     	//Save the ingredient to the DB
     	ingredientService.save(ingredient);
-    	
-    	//Update the inventory
-    	//TODO Add the functionality to update the inventory. This requires the inventory class 
-    	//to be built out, which will not be done until next  (4/28). 
-    	return null;
+    	//Updating the inventory
+    	//Create list containing the single ingredient being added
+    	List<Ingredient> ingredientList = new ArrayList<Ingredient>();
+    	ingredientList.add(ingredient);
+    	//Create a new inventory object for adding
+    	Inventory newInventory = new Inventory(ingredientList);
+    	Inventory existingInventory = inventoryService.getInventory();
+    	//Add the new ingredient to the existing inventory
+    	existingInventory.addIngredients(newInventory);
+    	//Save the inventory 
+    	inventoryService.save(existingInventory);
+    	return new ResponseEntity(existingInventory , HttpStatus.OK );
     }
 }

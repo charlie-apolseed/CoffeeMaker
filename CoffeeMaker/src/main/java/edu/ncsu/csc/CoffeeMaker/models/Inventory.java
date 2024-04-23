@@ -187,13 +187,13 @@ public class Inventory extends DomainObject {
         for (int idx = 0; idx < ingredients.size(); idx++) {
             Ingredient ingredient = ingredients.get(idx);
             if (ingredient.getName().equals(ingredientToUpdate.getName())) {
-                ingredients.set(idx, new Ingredient(ingredient.getName(), ingredientToUpdate.getAmount()));
+                ingredients.set(idx, ingredientToUpdate);
                 found = true;
                 break;
             }
         }
         if (!found) {
-            ingredients.add(new Ingredient(ingredientToUpdate.getName(), ingredientToUpdate.getAmount()));
+            ingredients.add(ingredientToUpdate);
         }
 
 

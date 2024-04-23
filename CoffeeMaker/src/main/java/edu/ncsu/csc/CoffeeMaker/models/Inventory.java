@@ -176,5 +176,27 @@ public class Inventory extends DomainObject {
 		}
 		return buf.toString();
 	}
+	
+	   /**
+     * Sets the amount for a given ingredient. If the ingredient is not found,
+     * it adds the ingredient
+     * @param ingredientToUpdate the ingredient object with updated amount
+     */
+    public void setIngredient(Ingredient ingredientToUpdate) {
+        boolean found = false;
+        for (int idx = 0; idx < ingredients.size(); idx++) {
+            Ingredient ingredient = ingredients.get(idx);
+            if (ingredient.getName().equals(ingredientToUpdate.getName())) {
+                ingredients.set(idx, new Ingredient(ingredient.getName(), ingredientToUpdate.getAmount()));
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            ingredients.add(new Ingredient(ingredientToUpdate.getName(), ingredientToUpdate.getAmount()));
+        }
 
+
+    }
+    
 }

@@ -4,9 +4,14 @@ package edu.ncsu.csc.CoffeeMaker.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 
-
+/**
+ * The ingredient class represents an ingredient that can be added to a recipe or the inventory.
+ * Each ingredient stores its name and its amount (needed for the recipe or in the inventory).
+ */
 @Entity
 public class Ingredient extends DomainObject {
 	
@@ -15,10 +20,16 @@ public class Ingredient extends DomainObject {
 	@GeneratedValue
 	Long id;
 	
-	
+	/**
+	 * name of ingredient
+	 */
+	@NotBlank
 	String name;
 	
-	
+	/**
+	 * current amount of ingredient
+	 */
+	@Min(0)
 	Integer amount;
 
 	/**
@@ -59,12 +70,8 @@ public class Ingredient extends DomainObject {
 	 * Setter for amount
 	 * 
 	 * @param amount to set
-	 * @throws IAE if amount is negative
 	 */
 	public void setAmount(Integer amount) {
-		if (amount < 0) {
-			throw new IllegalArgumentException("Amount cannot be negative");
-		}
 		this.amount = amount;
 	}
 
@@ -83,10 +90,6 @@ public class Ingredient extends DomainObject {
 	 * @throws IAE if the name is empty or null
 	 */
 	public void setName(String name) {
-		
-		if (name == null || "".equals(name)) {
-			throw new IllegalArgumentException("Name cannot be null or empty");
-		}
 		
 		this.name = name;
 	}

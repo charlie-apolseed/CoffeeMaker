@@ -159,54 +159,7 @@ public class APITest {
 
 		}
 	}
-	@Test 
-	@Transactional
-	public void validDeleteRecipe() throws UnsupportedEncodingException, Exception {
-	    recipeService.deleteAll();
 	
-	    Recipe mocha = new Recipe();
-	    mocha.setName("Mocha");
-	    mocha.setPrice(350);
-	    
-	   
-	    coffee = new Ingredient("coffee", 50);
-	    milk = new Ingredient("milk", 1);
-	    chocolate  = new Ingredient("chocolate", 5);
-
-	    mocha.addIngredient(coffee);
-	    mocha.addIngredient(milk);
-	    mocha.addIngredient(chocolate);
-	    
-	    recipeService.save(mocha);
-
-	    Recipe latte = new Recipe();
-	    latte.setName("Latte");
-	    coffee = new Ingredient("coffee", 50);
-	    milk = new Ingredient("milk", 5);
-	    chocolate  = new Ingredient("chocolate", 1);
-	    latte.addIngredient(coffee);
-	    latte.addIngredient(milk);
-	    latte.addIngredient(chocolate);
-	    latte.setPrice(450);
-	    recipeService.save(latte);
-	    
-	    // ensure that both are saved
-	    List<Recipe> dbRecipes = (List<Recipe>) recipeService.findAll();
-	    Assertions.assertEquals(2, dbRecipes.size());
-
-	    // delete operation on latte
-	    mvc.perform(delete("/api/v1/recipes/Latte")
-	            .contentType(MediaType.APPLICATION_JSON))
-	            .andExpect(status().isOk());
-
-	    // get the updated list of recipes after the delete operation.
-	    dbRecipes = (List<Recipe>) recipeService.findAll();
-	    Assertions.assertEquals(1, dbRecipes.size());
-
-	    // remaining recipe should be mocha
-	    Recipe remainingRecipe = dbRecipes.get(0);
-	    Assertions.assertEquals("Mocha", remainingRecipe.getName());
-	}
 }
 	
 

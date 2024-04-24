@@ -1,24 +1,25 @@
 package edu.ncsu.csc.CoffeeMaker.models;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-
-
+/**
+ * Ingredient class: An ingredient is a object that has a name and an initial
+ * amount. It can later on be added to a recipe.
+ */
 @Entity
 public class Ingredient extends DomainObject {
 	
-	
+	/** Ingredient id */
 	@Id
 	@GeneratedValue
 	Long id;
 	
-	
+	/** Ingredient name */
 	String name;
 	
-	
+	/** Ingredient initial amount */
 	Integer amount;
 
 	/**
@@ -48,8 +49,8 @@ public class Ingredient extends DomainObject {
 
 
 	/**
-	 * 
-	 * @return amount
+	 * Gets the amount stored in the ingredient object
+	 * @return amount how much of the ingredient is stored
 	 */
 	public Integer getAmount() {
 		return amount;
@@ -70,6 +71,7 @@ public class Ingredient extends DomainObject {
 
 	
 	/**
+	 * Gets the name stored in the ingredient object
 	 * @return the name
 	 */
 	public String getName() {

@@ -38,37 +38,36 @@ public class ServiceTest {
 
     @BeforeEach
     public void setUp() { 
-    	service.deleteAll();
-    	
-    	
-		r1 = new Recipe(); 
-	    coffee = new Ingredient("coffee", 1);
-	    milk = new Ingredient("milk", 2);
-	    sugar = new Ingredient("sugar", 3);
-	    chocolate  = new Ingredient("sugar", 1);
-	    r1.setName( "Black Coffee" );
-	    r1.setPrice( 1 );
-	    r1.addIngredient(coffee);
-	    r1.addIngredient(milk);
-	    r1.addIngredient(sugar);
-	    r1.addIngredient(chocolate);
-    	r1 = new Recipe();
-
+        service.deleteAll();
+       
+        coffee = new Ingredient("coffee", 1);
+        milk = new Ingredient("milk", 2);
+        sugar = new Ingredient("sugar", 3);
+        chocolate = new Ingredient("chocolate", 1);
+        
+        r1 = new Recipe(); 
+        r1.setName("Black Coffee");
+        r1.setPrice(1);
+        r1.addIngredient(coffee);
+        r1.addIngredient(milk);
+        r1.addIngredient(sugar);
+        r1.addIngredient(chocolate);
         service.save(r1);
-
+        
+        coffee = new Ingredient("coffee", 2);
+        milk = new Ingredient("milk", 3);
+        sugar = new Ingredient("sugar", 4);
+        chocolate = new Ingredient("chocolate", 5);
         r2 = new Recipe();
-        coffee = new Ingredient("coffee", 4);
-	    milk = new Ingredient("milk", 8);
-	    sugar = new Ingredient("sugar", 5);
-	    chocolate  = new Ingredient("sugar", 6);
-        r2.setName( "Mocha" );
-        r2.setPrice( 1 );
+        r2.setName("Mocha");
+        r2.setPrice(1);
         r2.addIngredient(coffee);
         r2.addIngredient(milk);
-	    r2.addIngredient(sugar);
-	    r2.addIngredient(chocolate);
+        r2.addIngredient(sugar);
+        r2.addIngredient(chocolate);
         service.save(r2);      
     }
+
 
     @Test
     @Transactional

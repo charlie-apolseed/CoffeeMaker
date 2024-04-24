@@ -148,15 +148,19 @@ public class Inventory extends DomainObject {
 	 */
 	public boolean enoughIngredients(Recipe r) {
 		for (Ingredient recipeIngredient : r.getIngredients()) {
+			boolean enough = false;
 			for (int idx = 0; idx < ingredients.size(); idx++) {
 				// Find the inventory ingredient that matches the item in the recipe
 				if (ingredients.get(idx).getName().equals(recipeIngredient.getName())) {
 					// Check to make sure the quantity being added is not more than the amount in
 					// the inventory
 					if (ingredients.get(idx).getAmount() < recipeIngredient.getAmount()) {
-						return false;
+						enough = true;
 					}
 				}
+			}
+			if (!enough) {
+				return false;
 			}
 		}
 		return true;

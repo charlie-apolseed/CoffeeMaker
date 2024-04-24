@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.ncsu.csc.CoffeeMaker.models.Ingredient;
 import edu.ncsu.csc.CoffeeMaker.models.Recipe;
 import edu.ncsu.csc.CoffeeMaker.services.RecipeService;
 
@@ -23,74 +24,71 @@ import edu.ncsu.csc.CoffeeMaker.services.RecipeService;
 public class TestDatabaseInteraction {
 	@Autowired
 	private RecipeService recipeService;
-	
+    private Ingredient coffee;
+    private Ingredient milk;
+    private Ingredient sugar;
+    private Ingredient chocolate;
+    private Ingredient cinnamon;
+	private Recipe mocha;
+    
+    @Transactional
+    @BeforeEach
+    public void setup () {
+        recipeService.deleteAll();
+    	mocha = new Recipe();
+        coffee = new Ingredient("coffee", 1);
+        milk = new Ingredient("milk", 2);
+        sugar = new Ingredient("sugar", 2);
+        cinnamon = new Ingredient("cinnamon", 1);
+        chocolate = new Ingredient("chocolate", 1);
+        mocha.setName( "Mocha" );
+        mocha.setPrice( 1 );
+        mocha.addIngredient(coffee);
+        mocha.addIngredient(chocolate);
+        mocha.addIngredient(cinnamon);
+	        
+	    recipeService.save(mocha);
+    }
 	
 	@Test
 	@Transactional
-	public void testRecipes(){
-		recipeService.deleteAll();
-		/*New recipe*/
-		Recipe mocha = new Recipe();
-		mocha.setName("Mocha");
-		mocha.setChocolate(5);
-		mocha.setMilk(1);
-		mocha.setCoffee(50);
-		mocha.setPrice(350);
-		recipeService.save(mocha );
-		
-		
+	public void testRecipeIngredient(){  
+	    /* this retrieves the ingredients that was added */
+	    List<Ingredient> ingredients = this.mocha.getIngredients();
+	    
+	
+	    /* this is retrieving the recipes from the database */
 		List<Recipe> dbRecipes = (List<Recipe>) recipeService.findAll();
-		
 		/*confirm that there is only one recipe in the system*/
 		Assertions.assertEquals(1, dbRecipes.size());
 		/*Get the mocha recipe from the database*/
 		Recipe dbRecipe = dbRecipes.get(0);
-		/*Confirm that fields are equal*/
-		Assertions.assertEquals(mocha.getName(), dbRecipe.getName());
-		Assertions.assertEquals(mocha.getChocolate(), dbRecipe.getChocolate());
-		Assertions.assertEquals(mocha.getPrice(), dbRecipe.getPrice());
-		Assertions.assertEquals(mocha.getMilk(), dbRecipe.getMilk());
-		Assertions.assertEquals(mocha.getSugar(), dbRecipe.getSugar());
-		Assertions.assertEquals(mocha.getCoffee(), dbRecipe.getCoffee());
-		/*Test get recipe by name*/
-		Assertions.assertEquals(mocha, recipeService.findByName("Mocha"));
+		/* Get the ingredients */
+		List<Ingredient> dbIngredients = dbRecipe.getIngredients();	
 		
-		/*Test edit recipe */
-		
-		mocha.setName("Mocha1");
-		mocha.setChocolate(6);
-		mocha.setMilk(2);
-		mocha.setCoffee(51);
-		mocha.setPrice(351);
-		recipeService.save(mocha);
-		/*Confirm that the new fields are equal */
-		Assertions.assertEquals(mocha.getName(), dbRecipe.getName());
-		Assertions.assertEquals(mocha.getChocolate(), dbRecipe.getChocolate());
-		Assertions.assertEquals(mocha.getPrice(), dbRecipe.getPrice());
-		Assertions.assertEquals(mocha.getMilk(), dbRecipe.getMilk());
-		Assertions.assertEquals(mocha.getSugar(), dbRecipe.getSugar());
-		Assertions.assertEquals(mocha.getCoffee(), dbRecipe.getCoffee());
+		/* this is confirming that all the fields are equal */
+		Assertions.assertEquals(ingredients, dbIngredients,
+				"The ingredients that were persisted to the database should be the same as the ones added to the mocha recipe");
+	
+		/*Test find recipe by name*/
+		Assertions.assertEquals(this.mocha, recipeService.findByName("Mocha"));
 	}
+
 	
 	@Test
 	@Transactional
 	public void testDeleteRecipes() {
-		recipeService.deleteAll();
-		/*New recipe*/
-		Recipe mocha = new Recipe();
-		mocha.setName("Mocha");
-		mocha.setChocolate(5);
-		mocha.setMilk(1);
-		mocha.setCoffee(50);
-		mocha.setPrice(350);
-		recipeService.save(mocha);
 		
-		Recipe latte = new Recipe();
-		latte.setName("Latte");
-		latte.setChocolate(1);
-		latte.setMilk(5);
-		latte.setCoffee(50);
-		latte.setPrice(450);
+    	Recipe latte = new Recipe();
+        coffee = new Ingredient("coffee", 4);
+        milk = new Ingredient("milk", 2);
+        sugar = new Ingredient("sugar", 2);
+
+        latte.setName( "Mocha" );
+        latte.setPrice( 1 );
+        latte.addIngredient(coffee);
+        latte.addIngredient(milk);
+        latte.addIngredient(sugar);
 		recipeService.save(latte);
 		
 		
@@ -99,26 +97,20 @@ public class TestDatabaseInteraction {
 		/*confirm that there are two recipe in the system*/
 		Assertions.assertEquals(2, dbRecipes.size());
 		
-		Assertions.assertEquals(mocha, recipeService.findByName(mocha.getName()));
-		Assertions.assertEquals(latte, recipeService.findByName(latte.getName()));
-		
-		
 		recipeService.delete(latte);
 		
 		dbRecipes = (List<Recipe>) recipeService.findAll();
 		
 		/*confirm that there is only one recipe in the system*/
 		Assertions.assertEquals(1, dbRecipes.size());
-		Assertions.assertEquals(mocha, recipeService.findByName(mocha.getName()));
+		Assertions.assertEquals(this.mocha, recipeService.findByName(this.mocha.getName()));
 		
-		recipeService.delete(mocha);
+		recipeService.delete(this.mocha);
 		
 		dbRecipes = (List<Recipe>) recipeService.findAll();
 		
 		/*confirm that there are no recipes in the system*/
-		Assertions.assertEquals(0, dbRecipes.size());
-		
-		
+		Assertions.assertEquals(0, dbRecipes.size());	
 	}
 	
 

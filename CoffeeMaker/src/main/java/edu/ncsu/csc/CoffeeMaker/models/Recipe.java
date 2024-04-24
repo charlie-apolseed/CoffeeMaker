@@ -1,9 +1,17 @@
 package edu.ncsu.csc.CoffeeMaker.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 /**
  * Recipe for the coffee maker. Recipe is tied to the database using Hibernate
@@ -21,42 +29,32 @@ public class Recipe extends DomainObject {
     private Long    id;
 
     /** Recipe name */
+    @NotBlank
     private String  name;
 
     /** Recipe price */
     @Min ( 0 )
     private Integer price;
-
-    /** Amount coffee */
-    @Min ( 0 )
-    private Integer coffee;
-
-    /** Amount milk */
-    @Min ( 0 )
-    private Integer milk;
-
-    /** Amount sugar */
-    @Min ( 0 )
-    private Integer sugar;
-
-    /** Amount chocolate */
-    @Min ( 0 )
-    private Integer chocolate;
+    
+    @NotEmpty
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Ingredient> ingredients;
 
     /**
      * Creates a default recipe for the coffee maker.
      */
     public Recipe () {
         this.name = "";
+        ingredients = new ArrayList<Ingredient>();
     }
-
-    /**
-     * Check if all ingredient fields in the recipe are 0
-     *
-     * @return true if all ingredient fields are 0, otherwise return false
-     */
-    public boolean checkRecipe () {
-        return coffee == 0 && milk == 0 && sugar == 0 && chocolate == 0;
+    
+    public void addIngredient(Ingredient ingredient) {
+    	ingredients.add(ingredient);
+    	
+    }
+    
+    public List<Ingredient> getIngredients () {
+    	return ingredients;
     }
 
     /**
@@ -80,81 +78,6 @@ public class Recipe extends DomainObject {
         this.id = id;
     }
 
-    /**
-     * Returns amount of chocolate in the recipe.
-     *
-     * @return Returns the amtChocolate.
-     */
-    public Integer getChocolate () {
-        return chocolate;
-    }
-
-    /**
-     * Sets the amount of chocolate in the recipe.
-     *
-     * @param chocolate
-     *            The amtChocolate to set.
-     */
-    public void setChocolate ( final Integer chocolate ) {
-        this.chocolate = chocolate;
-    }
-
-    /**
-     * Returns amount of coffee in the recipe.
-     *
-     * @return Returns the amtCoffee.
-     */
-    public Integer getCoffee () {
-        return coffee;
-    }
-
-    /**
-     * Sets the amount of coffee in the recipe.
-     *
-     * @param coffee
-     *            The amtCoffee to set.
-     */
-    public void setCoffee ( final Integer coffee ) {
-        this.coffee = coffee;
-    }
-
-    /**
-     * Returns amount of milk in the recipe.
-     *
-     * @return Returns the amtMilk.
-     */
-    public Integer getMilk () {
-        return milk;
-    }
-
-    /**
-     * Sets the amount of milk in the recipe.
-     *
-     * @param milk
-     *            The amtMilk to set.
-     */
-    public void setMilk ( final Integer milk ) {
-        this.milk = milk;
-    }
-
-    /**
-     * Returns amount of sugar in the recipe.
-     *
-     * @return Returns the amtSugar.
-     */
-    public Integer getSugar () {
-        return sugar;
-    }
-
-    /**
-     * Sets the amount of sugar in the recipe.
-     *
-     * @param sugar
-     *            The amtSugar to set.
-     */
-    public void setSugar ( final Integer sugar ) {
-        this.sugar = sugar;
-    }
 
     /**
      * Returns name of the recipe.
@@ -193,30 +116,22 @@ public class Recipe extends DomainObject {
     public void setPrice ( final Integer price ) {
         this.price = price;
     }
-
+    
     /**
-     * Updates the fields to be equal to the passed Recipe
-     *
-     * @param r
-     *            with updated fields
+     * Updates recipe ingredients and price to match the given recipe
+     * 
+     * @param r given recipe
      */
-    public void updateRecipe ( final Recipe r ) {
-        setChocolate( r.getChocolate() );
-        setCoffee( r.getCoffee() );
-        setMilk( r.getMilk() );
-        setSugar( r.getSugar() );
-        setPrice( r.getPrice() );
+    public void updateRecipe(Recipe r) {
+    	this.ingredients = r.getIngredients();
+    	setPrice(r.price);
+    	
     }
 
-    /**
-     * Returns the name of the recipe.
-     *
-     * @return String
-     */
     @Override
-    public String toString () {
-        return name;
-    }
+	public String toString() {
+		return "Recipe [id=" + id + ", name=" + name + ", price=" + price + ", ingredients=" + ingredients + "]";
+	}
 
     @Override
     public int hashCode () {

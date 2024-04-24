@@ -22,8 +22,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.ArrayList;
 import java.util.List;
 import edu.ncsu.csc.CoffeeMaker.common.TestUtils;
+import edu.ncsu.csc.CoffeeMaker.models.Ingredient;
 import edu.ncsu.csc.CoffeeMaker.models.Inventory;
 import edu.ncsu.csc.CoffeeMaker.models.Recipe;
 import edu.ncsu.csc.CoffeeMaker.services.InventoryService;
@@ -49,6 +51,12 @@ public class APITest {
 
 	@Autowired
 	private WebApplicationContext context;
+	
+    private Ingredient coffee;
+    private Ingredient milk;
+    private Ingredient sugar;
+    private Ingredient chocolate;
+
 
 	
 	/**
@@ -58,26 +66,31 @@ public class APITest {
 	public void setup () {
 	    mvc = MockMvcBuilders.webAppContextSetup( context ).build();
 	    
-	    final Inventory ivt = inventoryService.getInventory();
-
-	    /*Set the inventory to empty to begin */
-        ivt.setChocolate(0 );
-        ivt.setCoffee( 0 );
-        ivt.setMilk( 0 );
-        ivt.setSugar( 0 );
-
+    	List<Ingredient> inventoryIngredients = new ArrayList<>();
+        coffee = new Ingredient("coffee", 0);
+        milk = new Ingredient("milk", 0);
+        sugar = new Ingredient("sugar", 0);
+        inventoryIngredients.add(coffee);
+        inventoryIngredients.add(milk);
+        inventoryIngredients.add(sugar);
+        Inventory ivt = new Inventory(inventoryIngredients);
         inventoryService.save( ivt );
 	}
-	
+	@Transactional
 	private Recipe makeMocha() {
-		final Recipe r = new Recipe();
-		 r.setChocolate( 5 );
-		    r.setCoffee( 3 );
-		    r.setMilk( 4 );
-		    r.setSugar( 8 );
-		    r.setPrice( 10 );
-		    r.setName( "Mocha" );
-		    return r;
+		final Recipe r = new Recipe(); 
+	    coffee = new Ingredient("coffee", 3);
+	    milk = new Ingredient("milk", 4);
+	    sugar = new Ingredient("sugar", 8);
+	    chocolate  = new Ingredient("chocolate", 5);
+	    r.setName( "Mocha" );
+	    r.setPrice( 1 );
+	    r.addIngredient(coffee);
+	    r.addIngredient(milk);
+	    r.addIngredient(sugar);
+	    r.addIngredient(chocolate);
+	        
+	    return r;
 	}
 	
 	@Test 
@@ -101,16 +114,34 @@ public class APITest {
 		    //test getting recipes
 		    Assertions.assertTrue(recipeTest.contains("\"Mocha\""));
 		    
-		    final Inventory i = new Inventory(50,50,50,50);
+			List<Ingredient> inventoryIngredients = new ArrayList<>();
+	        milk = new Ingredient("milk", 50);
+	        coffee = new Ingredient("coffee", 50);
+	        sugar = new Ingredient("sugar", 50);
+	        chocolate = new Ingredient("chocolate", 50);
+	        inventoryIngredients.add(coffee);
+	        inventoryIngredients.add(milk);
+	        inventoryIngredients.add(sugar);
+	        inventoryIngredients.add(chocolate);
+	        Inventory i = new Inventory(inventoryIngredients);
+
+
+
+	
 		    mvc.perform( put( "/api/v1/inventory" ).contentType( MediaType.APPLICATION_JSON )
 		            .content( TestUtils.asJsonString( i) ) ).andExpect( status().isOk() );
+		    
+		    
+			
+		    
+		    
 		    String inventoryTest = mvc.perform( get( "/api/v1/inventory" ) ).andDo( print() ).andExpect( status().isOk() )
 			        .andReturn().getResponse().getContentAsString();
 		    //test if the inventory was added
-		    Assertions.assertTrue(inventoryTest.contains("\"milk\":50"));
-		    Assertions.assertTrue(inventoryTest.contains("\"coffee\":50"));
-		    Assertions.assertTrue(inventoryTest.contains("\"sugar\":50"));
-		    Assertions.assertTrue(inventoryTest.contains("\"chocolate\":50"));
+		    Assertions.assertTrue(inventoryTest.contains("\"milk\",\"amount\":50"));
+		    Assertions.assertTrue(inventoryTest.contains("\"coffee\",\"amount\":50"));
+		    Assertions.assertTrue(inventoryTest.contains("\"sugar\",\"amount\":50"));
+		    Assertions.assertTrue(inventoryTest.contains("\"chocolate\",\"amount\":50"));
 		    
 		    mvc.perform( post( "/api/v1/makecoffee/Mocha" ).contentType( MediaType.APPLICATION_JSON )
 		            .content( TestUtils.asJsonString(350) ) ).andExpect( status().isOk() );
@@ -118,10 +149,11 @@ public class APITest {
 		    String inventoryTest2 = mvc.perform( get( "/api/v1/inventory" ) ).andDo( print() ).andExpect( status().isOk() )
 			        .andReturn().getResponse().getContentAsString();
 		    //test if mocha ingredients were successfully removed from inventory.
-		    Assertions.assertTrue(inventoryTest2.contains("\"milk\":46"));
-		    Assertions.assertTrue(inventoryTest2.contains("\"coffee\":47"));
-		    Assertions.assertTrue(inventoryTest2.contains("\"sugar\":42"));
-		    Assertions.assertTrue(inventoryTest2.contains("\"chocolate\":45"));
+		    Assertions.assertTrue(inventoryTest2.contains("\"milk\",\"amount\":46"));
+		    Assertions.assertTrue(inventoryTest2.contains("\"coffee\",\"amount\":47"));
+		    Assertions.assertTrue(inventoryTest2.contains("\"sugar\",\"amount\":42"));
+		    Assertions.assertTrue(inventoryTest2.contains("\"chocolate\",\"amount\":45"));
+
 		    
 		    
 
@@ -134,17 +166,27 @@ public class APITest {
 	
 	    Recipe mocha = new Recipe();
 	    mocha.setName("Mocha");
-	    mocha.setChocolate(5);
-	    mocha.setMilk(1);
-	    mocha.setCoffee(50);
 	    mocha.setPrice(350);
+	    
+	   
+	    coffee = new Ingredient("coffee", 50);
+	    milk = new Ingredient("milk", 1);
+	    chocolate  = new Ingredient("chocolate", 5);
+
+	    mocha.addIngredient(coffee);
+	    mocha.addIngredient(milk);
+	    mocha.addIngredient(chocolate);
+	    
 	    recipeService.save(mocha);
 
 	    Recipe latte = new Recipe();
 	    latte.setName("Latte");
-	    latte.setChocolate(1);
-	    latte.setMilk(5);
-	    latte.setCoffee(50);
+	    coffee = new Ingredient("coffee", 50);
+	    milk = new Ingredient("milk", 5);
+	    chocolate  = new Ingredient("chocolate", 1);
+	    latte.addIngredient(coffee);
+	    latte.addIngredient(milk);
+	    latte.addIngredient(chocolate);
 	    latte.setPrice(450);
 	    recipeService.save(latte);
 	    

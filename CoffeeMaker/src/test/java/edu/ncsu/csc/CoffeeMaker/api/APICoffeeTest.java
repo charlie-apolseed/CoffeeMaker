@@ -114,7 +114,7 @@ public class APICoffeeTest {
         inventory.setIngredient(coffee);
         iService.save(inventory);
         
-        //inventory = iService.getInventory();
+
         
        
         final String name = "coffee";

@@ -69,7 +69,7 @@ public class APIIngredientTest {
 		Ingredient coffee2 = new Ingredient("Coffee", 20);
 		
 		mvc.perform(post("/api/v1/ingredients").contentType(MediaType.APPLICATION_JSON).content(TestUtils.asJsonString(coffee2)))
-				.andExpect(status().isConflict());
+				.andExpect(status().isConflict()); 
 
 	}
 }

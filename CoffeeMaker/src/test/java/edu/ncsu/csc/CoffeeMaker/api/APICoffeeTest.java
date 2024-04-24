@@ -47,8 +47,11 @@ public class APICoffeeTest {
      * Sets up the tests.
      */
     @BeforeEach
+    @Transactional
     public void setup () {
 
+    	iService.deleteAll();
+    	
     	List<Ingredient> inventoryIngredients = new ArrayList<>();
         coffee = new Ingredient("coffee", 15);
         milk = new Ingredient("milk", 15);
@@ -110,6 +113,9 @@ public class APICoffeeTest {
         coffee = new Ingredient("coffee", 1);
         inventory.setIngredient(coffee);
         iService.save(inventory);
+        
+        //inventory = iService.getInventory();
+        
        
         final String name = "coffee";
         mvc.perform( post( String.format( "/api/v1/makecoffee/%s", name ) ).contentType( MediaType.APPLICATION_JSON )

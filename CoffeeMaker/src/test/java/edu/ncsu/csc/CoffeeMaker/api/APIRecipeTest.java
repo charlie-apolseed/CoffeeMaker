@@ -1,8 +1,12 @@
 package edu.ncsu.csc.CoffeeMaker.api;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -12,9 +16,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -78,6 +80,35 @@ public class APIRecipeTest {
         
         service.save(r);
         mvc.perform(get( "/api/v1/recipes/Mocha" ).contentType( MediaType.APPLICATION_JSON ))
+             .andExpect( status().isOk());
+        	
+    }
+    
+    /**
+     * Tests getting all of the recipes using GET/recipes
+     * @throws Exception
+     */
+    @Test
+    @Transactional
+    public void testValidGetAllRecipesAPI() throws Exception{
+    	service.deleteAll();
+    	
+    	//Create a recipe
+    	final Recipe r = new Recipe();
+        coffee = new Ingredient("coffee", 3);
+        milk = new Ingredient("milk", 4);
+        sugar = new Ingredient("sugar", 8);
+        chocolate = new Ingredient("chocolate", 5);
+        r.setPrice( 10 );
+        r.setName( "Mocha" );
+        r.addIngredient(coffee);
+        r.addIngredient(milk);
+        r.addIngredient(sugar);
+        r.addIngredient(chocolate);
+        service.save(r);
+        
+        //Perform the get all recipes API call
+        mvc.perform(get( "/api/v1/recipes" ).contentType( MediaType.APPLICATION_JSON ))
              .andExpect( status().isOk());
         	
     }
@@ -236,6 +267,49 @@ public class APIRecipeTest {
                 .content( TestUtils.asJsonString( r2 ) ) ).andExpect( status().is4xxClientError() );
 
         Assertions.assertEquals( 1, service.findAll().size(), "There should only one recipe in the CoffeeMaker" );
+    }
+    
+    /**
+     * Tests that the API Endpoint DELETE/recipes successfully removes a recipe of the given name.
+     * If no recipe exists, returns a 400 error response. 
+     * 
+     * @throws Exception
+     */
+    @Test
+    @Transactional
+    public void testDeleteRecipe () throws Exception {
+        service.deleteAll();
+
+        /* Tests a recipe with a duplicate name to make sure it's rejected */
+
+        Assertions.assertEquals( 0, service.findAll().size(), "There should be no Recipes in the CoffeeMaker" );
+
+        //Create new recipe object then save it
+        final Recipe r1 = new Recipe();
+        coffee = new Ingredient("coffee", 3);
+        milk = new Ingredient("milk", 1);
+        sugar = new Ingredient("sugar", 1);
+        chocolate = new Ingredient("chocolate", 2);
+        r1.setPrice( 50 );
+        r1.setName( "Mocha" );
+        r1.addIngredient(coffee);
+        r1.addIngredient(milk);
+        r1.addIngredient(sugar);
+        r1.addIngredient(chocolate);
+        
+        service.save(r1);
+        
+        mvc.perform(delete( "/api/v1/recipes/Mocha" ).contentType( MediaType.APPLICATION_JSON ))
+        .andExpect( status().isOk());
+   	
+        
+        Assertions.assertEquals( 0, service.findAll().size(), "There should not be any recipes in the CoffeeMaker" );
+   
+        //Try to delete a recipe that does not exist
+        mvc.perform(delete( "/api/v1/recipes/WeirdRecipeName" ).contentType( MediaType.APPLICATION_JSON ))
+        .andExpect( status().is4xxClientError());
+        
+        Assertions.assertEquals( 0, service.findAll().size(), "There should not be any recipes in the CoffeeMaker" );
     }
 
 

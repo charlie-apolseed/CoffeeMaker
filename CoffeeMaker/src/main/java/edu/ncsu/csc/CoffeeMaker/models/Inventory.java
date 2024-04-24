@@ -39,7 +39,7 @@ public class Inventory extends DomainObject {
 	/**
 	 * Use this to create inventory with specified amounts of each ingredient.
 	 *
-	 * @param ingredients
+	 * @param ingredients stored in the inventory
 	 */
 	public Inventory(List<Ingredient> ingredients) {
 		this.ingredients = ingredients;
@@ -73,6 +73,10 @@ public class Inventory extends DomainObject {
 		return null;
 	}
 
+	/**
+	 * adds a list of Ingredient objects from an inventory to the Inventory, by looping through the list
+	 * @param addInventory inventory being added
+	 */
 	public void addIngredients(Inventory addInventory) {
 		// Loop through the inventory being added. For each name, if the ingredient is
 		// in the system
@@ -85,7 +89,7 @@ public class Inventory extends DomainObject {
 			boolean ingredientAdded = false;
 			int idx = 0;
 			// Iterate through current ingredients list
-			while (idx < ingredients.size() && ingredientAdded == false) {
+			while (idx < ingredients.size() && !ingredientAdded) {
 				if (ingredients.get(idx).getName().equals(newIngredient.getName())) {
 					// Set the new quantity to be the sum of the existing quantity with the new
 					// quantity
@@ -97,7 +101,7 @@ public class Inventory extends DomainObject {
 				idx++;
 			}
 			// If the ingredient wasn't already in the system, add it.
-			if (ingredientAdded == false) {
+			if (!ingredientAdded) {
 				ingredients.add(newIngredient);
 			}
 		}

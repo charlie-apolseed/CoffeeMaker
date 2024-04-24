@@ -2,6 +2,7 @@ package edu.ncsu.csc.CoffeeMaker.api;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 import javax.transaction.Transactional;
 
@@ -11,9 +12,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 
 import edu.ncsu.csc.CoffeeMaker.common.TestUtils;
 import edu.ncsu.csc.CoffeeMaker.models.Ingredient;
@@ -56,6 +60,38 @@ public class APIRecipeTest {
 
     }
     
+    @Test
+    @Transactional
+    public void testValidGetRecipeAPI() throws Exception{
+    	service.deleteAll();
+    	final Recipe r = new Recipe();
+        coffee = new Ingredient("coffee", 3);
+        milk = new Ingredient("milk", 4);
+        sugar = new Ingredient("sugar", 8);
+        chocolate = new Ingredient("chocolate", 5);
+        r.setPrice( 10 );
+        r.setName( "Mocha" );
+        r.addIngredient(coffee);
+        r.addIngredient(milk);
+        r.addIngredient(sugar);
+        r.addIngredient(chocolate);
+        
+        service.save(r);
+        mvc.perform(get( "/api/v1/recipes/Mocha" ).contentType( MediaType.APPLICATION_JSON ))
+             .andExpect( status().isOk());
+        	
+    }
+    
+    @Test
+    @Transactional
+    public void tesNotFoundGetRecipeAPI() throws Exception{
+    	service.deleteAll();
+      ResultActions result =   mvc.perform(get( "/api/v1/recipes/Mocha" ).contentType( MediaType.APPLICATION_JSON ))
+             .andExpect( status().isNotFound());
+        
+      String errorMessage = result.andReturn().getResponse().getContentAsString();
+      Assertions.assertEquals("{\"status\":\"failed\",\"message\":\"No recipe found with name Mocha\"}", errorMessage);
+    }
     
     @Test
     @Transactional
@@ -84,6 +120,77 @@ public class APIRecipeTest {
 
         Assertions.assertEquals( 1, (int) service.count() );
 
+    }
+    
+    @Test
+    @Transactional
+    public void testCreateRecipeTooMany () throws Exception {
+        service.deleteAll();
+
+        /* Tests a recipe with a duplicate name to make sure it's rejected */
+
+        Assertions.assertEquals( 0, service.findAll().size(), "There should be no Recipes in the CoffeeMaker" );
+
+        
+        final Recipe r1 = new Recipe();
+        coffee = new Ingredient("coffee", 3);
+        milk = new Ingredient("milk", 1);
+        sugar = new Ingredient("sugar", 1);
+        chocolate = new Ingredient("chocolate", 2);
+        r1.setPrice( 50 );
+        r1.setName( "Mocha" );
+        r1.addIngredient(coffee);
+        r1.addIngredient(milk);
+        r1.addIngredient(sugar);
+        r1.addIngredient(chocolate);
+        
+        final Recipe r2 = new Recipe();
+        coffee = new Ingredient("coffee", 3);
+        milk = new Ingredient("milk", 1);
+        sugar = new Ingredient("sugar", 1);
+        chocolate = new Ingredient("chocolate", 2);
+        r2.setPrice( 50 );
+        r2.setName( "Coffee" );
+        r2.addIngredient(coffee);
+        r2.addIngredient(milk);
+        r2.addIngredient(sugar);
+        r2.addIngredient(chocolate);
+
+        service.save( r1 );
+        service.save(r2);
+        
+        final Recipe r3 = new Recipe();
+        coffee = new Ingredient("coffee", 3);
+        milk = new Ingredient("milk", 1);
+        sugar = new Ingredient("sugar", 1);
+        chocolate = new Ingredient("chocolate", 2);
+        r3.setPrice( 50 );
+        r3.setName( "another coffees" );
+        r3.addIngredient(coffee);
+        r3.addIngredient(milk);
+        r3.addIngredient(sugar);
+        r3.addIngredient(chocolate);
+        
+        service.save(r3);
+        
+        final Recipe r4 = new Recipe();
+        coffee = new Ingredient("coffee", 3);
+        milk = new Ingredient("milk", 1);
+        sugar = new Ingredient("sugar", 1);
+        chocolate = new Ingredient("chocolate", 2);
+        r4.setPrice( 50 );
+        r4.setName( "too much cofffee" );
+        r4.addIngredient(coffee);
+        r4.addIngredient(milk);
+        r4.addIngredient(sugar);
+        r4.addIngredient(chocolate);
+        
+       
+       
+        mvc.perform( post( "/api/v1/recipes" ).contentType( MediaType.APPLICATION_JSON )
+                .content( TestUtils.asJsonString( r4 ) ) ).andExpect( status().isInsufficientStorage() );
+
+        Assertions.assertEquals( 3, service.findAll().size(), "There should only 3 recipes in the CoffeeMaker" );
     }
 
 

@@ -1,5 +1,8 @@
 package edu.ncsu.csc.CoffeeMaker.unit;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,6 +14,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.ncsu.csc.CoffeeMaker.TestConfig;
+import edu.ncsu.csc.CoffeeMaker.models.Ingredient;
 import edu.ncsu.csc.CoffeeMaker.models.Inventory;
 import edu.ncsu.csc.CoffeeMaker.models.Recipe;
 import edu.ncsu.csc.CoffeeMaker.services.InventoryService;
@@ -26,11 +30,20 @@ public class InventoryTest {
     @BeforeEach
     public void setup () {
         final Inventory ivt = inventoryService.getInventory();
+        
+        Ingredient chocolate = new Ingredient("Chocolate", 20);
+        Ingredient coffee = new Ingredient("Coffee", 10);
+        Ingredient milk = new Ingredient("Milk", 10);
+        Ingredient cinnamon = new Ingredient("Cinnamon", 20);
+        
+        List<Ingredient> addToInventory = new ArrayList<>();
+        addToInventory.add(coffee);
+        addToInventory.add(milk);
+        addToInventory.add(chocolate);
+        addToInventory.add(cinnamon);
 
-        ivt.setChocolate( 500 );
-        ivt.setCoffee( 500 );
-        ivt.setMilk( 500 );
-        ivt.setSugar( 500 );
+        Inventory toAdd = new Inventory();
+        ivt.addIngredients(toAdd);
 
         inventoryService.save( ivt );
     }
@@ -39,9 +52,13 @@ public class InventoryTest {
     @Transactional
     public void testConsumeInventory () {
         final Inventory i = inventoryService.getInventory();
+        Ingredient chocolate = new Ingredient("Chocolate", 2);
+        Ingredient coffee = new Ingredient("Coffee", 1);
+        Ingredient milk = new Ingredient("Milk", 5);
+        Ingredient cinnamon = new Ingredient("Cinnamon", 3);
 
         final Recipe recipe = new Recipe();
-        recipe.setName( "Delicious Not-Coffee" );
+        recipe.setName( "" );
         recipe.setChocolate( 10 );
         recipe.setMilk( 20 );
         recipe.setSugar( 5 );

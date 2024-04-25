@@ -36,6 +36,9 @@ public class Recipe extends DomainObject {
     @Min ( 0 )
     private Integer price;
     
+    /**
+     * List of ingredients in recipe
+     */
     @NotEmpty
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Ingredient> ingredients;
@@ -144,13 +147,12 @@ public class Recipe extends DomainObject {
     	
     }
 
-    
-    @Override
     /**
      * Returns a string describing the current contents of the recipe
      * 
      * @return string representing recipe
      */
+    @Override
 	public String toString() {
 		return "Recipe [id=" + id + ", name=" + name + ", price=" + price + ", ingredients=" + ingredients + "]";
 	}

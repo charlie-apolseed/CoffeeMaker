@@ -110,7 +110,7 @@ public class Inventory extends DomainObject {
 	/**
 	 * Returns the list of ingredients in the inventory.
 	 * 
-	 * @Return a list containing the ingredient objects.
+	 * @return a list containing the ingredient objects.
 	 */
 	public List<Ingredient> getIngredients() {
 		return ingredients;

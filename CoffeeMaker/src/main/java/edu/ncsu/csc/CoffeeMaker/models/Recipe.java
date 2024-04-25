@@ -144,11 +144,22 @@ public class Recipe extends DomainObject {
     	
     }
 
+    
     @Override
+    /**
+     * Returns a string describing the current contents of the recipe
+     * 
+     * @return string representing recipe
+     */
 	public String toString() {
 		return "Recipe [id=" + id + ", name=" + name + ", price=" + price + ", ingredients=" + ingredients + "]";
 	}
 
+    /**
+     * overrides hashcode method
+     * 
+     * @return int hashscode
+     */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -157,6 +168,11 @@ public class Recipe extends DomainObject {
 		return result;
 	}
 
+	/**
+	 * Overrides equals method. Recipes are equal if they have the same name.
+	 * 
+	 * @return boolean representing equality.
+	 */
 	@Override
 	public boolean equals(final Object obj) {
 		if (this == obj) {

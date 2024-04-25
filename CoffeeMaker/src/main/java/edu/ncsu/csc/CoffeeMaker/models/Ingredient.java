@@ -14,13 +14,19 @@ public class Ingredient extends DomainObject {
 	/** Ingredient id */
 	@Id
 	@GeneratedValue
-	Long id;
+	private Long id;
 	
-	/** Ingredient name */
-	String name;
+	/**
+	 * name of ingredient
+	 */
+	@NotBlank
+	private String name;
 	
-	/** Ingredient initial amount */
-	Integer amount;
+	/**
+	 * current amount of ingredient
+	 */
+	@Min(0)
+	private Integer amount;
 
 	/**
 	 * Constructor sets fields

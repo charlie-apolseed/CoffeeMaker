@@ -23,119 +23,128 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 public class Recipe extends DomainObject {
 
-	/** Recipe id */
-	@Id
-	@GeneratedValue
-	private Long id;
+    /** Recipe id */
+    @Id
+    @GeneratedValue
+    private Long    id;
 
-	/** Recipe name */
-	@NotBlank
-	private String name;
+    /** Recipe name */
+    @NotBlank
+    private String  name;
 
-	/** Recipe price */
-	@Min(0)
-	private Integer price;
+    /** Recipe price */
+    @Min ( 0 )
+    private Integer price;
+    
+    @NotEmpty
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Ingredient> ingredients;
 
-	/** Ingredient list */
-	@NotEmpty
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Ingredient> ingredients;
+    /**
+     * Creates a default recipe for the coffee maker.
+     */
+    public Recipe () {
+        this.name = "";
+        ingredients = new ArrayList<Ingredient>();
+    }
+    
+    /**
+     * Adds ingredient to the recipe
+     * 
+     * @param ingredient to add
+     * @throws IAE if ingredient amount is zero
+     */
+    public void addIngredient(Ingredient ingredient) {
+    	
+    	if (ingredient.getAmount() == 0) {
+    		throw new IllegalArgumentException("Ingredient " + ingredient.getName() + " must have an amount greater than zero");
+    	}
+    	
+    	ingredients.add(ingredient);
+    	
+    }
+    
+    /**
+     * Gets ingredients
+     * 
+     * @return list of ingredients
+     */
+    public List<Ingredient> getIngredients () {
+    	return ingredients;
+    }
 
-	/**
-	 * Creates a default recipe for the coffee maker.
-	 */
-	public Recipe() {
-		this.name = "";
-		ingredients = new ArrayList<Ingredient>();
-	}
+    /**
+     * Get the ID of the Recipe
+     *
+     * @return the ID
+     */
+    @Override
+    public Long getId () {
+        return id;
+    }
 
-	/**
-	 * Adds a single ingredient to a recipe
-	 * 
-	 * @param ingredient the ingredient to add
-	 */
-	public void addIngredient(Ingredient ingredient) {
-		ingredients.add(ingredient);
+    /**
+     * Set the ID of the Recipe (Used by Hibernate)
+     *
+     * @param id
+     *            the ID
+     */
+    @SuppressWarnings ( "unused" )
+    private void setId ( final Long id ) {
+        this.id = id;
+    }
 
-	}
 
-	/***
-	 * Gets the list of ingredients in recipe
-	 * 
-	 * @return list of ingredients in recipe
-	 */
-	public List<Ingredient> getIngredients() {
-		return ingredients;
-	}
+    /**
+     * Returns name of the recipe.
+     *
+     * @return Returns the name.
+     */
+    public String getName () {
+        return name;
+    }
 
-	/**
-	 * Get the ID of the Recipe
-	 *
-	 * @return the ID
-	 */
-	@Override
-	public Long getId() {
-		return id;
-	}
+    /**
+     * Sets the recipe name.
+     *
+     * @param name
+     *            The name to set.
+     */
+    public void setName ( final String name ) {
+        this.name = name;
+    }
 
-	/**
-	 * Set the ID of the Recipe (Used by Hibernate)
-	 *
-	 * @param id the ID
-	 */
-	@SuppressWarnings("unused")
-	private void setId(final Long id) {
-		this.id = id;
-	}
+    /**
+     * Returns the price of the recipe.
+     *
+     * @return Returns the price.
+     */
+    public Integer getPrice () {
+        return price;
+    }
 
-	/**
-	 * Returns name of the recipe.
-	 *
-	 * @return Returns the name.
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * Sets the recipe price.
+     *
+     * @param price
+     *            The price to set.
+     */
+    public void setPrice ( final Integer price ) {
+        this.price = price;
+    }
+    
+    /**
+     * Updates recipe ingredients and price to match the given recipe
+     * 
+     * @param r given recipe
+     */
+    public void updateRecipe(Recipe r) {
+    	this.ingredients = r.getIngredients();
+    	setPrice(r.price);
+    	
+    }
 
-	/**
-	 * Sets the recipe name.
-	 *
-	 * @param name The name to set.
-	 */
-	public void setName(final String name) {
-		this.name = name;
-	}
-
-	/**
-	 * Returns the price of the recipe.
-	 *
-	 * @return Returns the price.
-	 */
-	public Integer getPrice() {
-		return price;
-	}
-
-	/**
-	 * Sets the recipe price.
-	 *
-	 * @param price The price to set.
-	 */
-	public void setPrice(final Integer price) {
-		this.price = price;
-	}
-
-	/**
-	 * Updates recipe ingredients and price to match the given recipe
-	 * 
-	 * @param r given recipe
-	 */
-	public void updateRecipe(Recipe r) {
-		this.ingredients = r.getIngredients();
-		setPrice(r.price);
-
-	}
-
-	@Override
+    @Override
 	public String toString() {
 		return "Recipe [id=" + id + ", name=" + name + ", price=" + price + ", ingredients=" + ingredients + "]";
 	}

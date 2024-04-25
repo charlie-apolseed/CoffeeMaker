@@ -79,6 +79,12 @@ public class RecipeTest {
     public void testNoRecipes () {
         Assertions.assertEquals( 0, service.findAll().size(), "There should be no Recipes in the CoffeeMaker" );
 
+        coffee = new Ingredient("coffee", 1);
+        milk = new Ingredient("milk", 2);
+        sugar = new Ingredient("sugar", 2);
+        cinnamon = new Ingredient("cinnamon", 1);
+        chocolate = new Ingredient("chocolate", 1);
+        
         final Recipe r1 = new Recipe();
         r1.setName( "Tasty Drink" );
         r1.setPrice( 12 );
@@ -98,7 +104,7 @@ public class RecipeTest {
 
         try {
             Assertions.assertEquals( 0, service.count(),
-                    "Trying to save a collection of elements where one is invalid should result in neither getting saved" );
+                    "There should be no recipes if none are saved" );
         }
         catch ( final Exception e ) {
             Assertions.assertTrue( e instanceof ConstraintViolationException );
@@ -132,6 +138,20 @@ public class RecipeTest {
 		// checks if the right ingredients were added
 		Assertions.assertTrue(ingredients.contains(milk));
 		Assertions.assertTrue(ingredients.contains(coffee));
+	}
+	
+	@Test
+	public void testAddIngredientInvalid() {
+		final Recipe recipe = new Recipe();
+		recipe.setName("Latte");
+		recipe.setPrice(2);
+		
+		try {
+			recipe.addIngredient(new Ingredient("coffee", 0));
+			Assertions.fail("Adding ingredient with amount 0 should fail, but didn't");
+		}catch (Exception e) {
+			//carry on
+		}
 	}
 	
 	@Test

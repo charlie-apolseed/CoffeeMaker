@@ -1,21 +1,17 @@
 package edu.ncsu.csc.CoffeeMaker.models;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-
 
 /**
- * The ingredient class represents an ingredient that can be added to a recipe or the inventory.
- * Each ingredient stores its name and its amount (needed for the recipe or in the inventory).
+ * Ingredient class: An ingredient is a object that has a name and an initial
+ * amount. It can later on be added to a recipe.
  */
 @Entity
 public class Ingredient extends DomainObject {
 	
-	
+	/** Ingredient id */
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -59,8 +55,8 @@ public class Ingredient extends DomainObject {
 
 
 	/**
-	 * 
-	 * @return amount
+	 * Gets the amount stored in the ingredient object
+	 * @return amount how much of the ingredient is stored
 	 */
 	public Integer getAmount() {
 		return amount;
@@ -70,13 +66,18 @@ public class Ingredient extends DomainObject {
 	 * Setter for amount
 	 * 
 	 * @param amount to set
+	 * @throws IAE if amount is negative
 	 */
 	public void setAmount(Integer amount) {
+		if (amount < 0) {
+			throw new IllegalArgumentException("Amount cannot be negative");
+		}
 		this.amount = amount;
 	}
 
 	
 	/**
+	 * Gets the name stored in the ingredient object
 	 * @return the name
 	 */
 	public String getName() {
@@ -91,6 +92,10 @@ public class Ingredient extends DomainObject {
 	 */
 	public void setName(String name) {
 		
+		if (name == null || "".equals(name)) {
+			throw new IllegalArgumentException("Name cannot be null or empty");
+		}
+		
 		this.name = name;
 	}
 
@@ -98,6 +103,7 @@ public class Ingredient extends DomainObject {
 	public Long getId() {
 		return id;
 	}
+	
 	
 
 

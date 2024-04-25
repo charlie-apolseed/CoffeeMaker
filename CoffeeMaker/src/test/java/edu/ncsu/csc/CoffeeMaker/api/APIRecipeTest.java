@@ -1,7 +1,12 @@
 package edu.ncsu.csc.CoffeeMaker.api;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -14,122 +19,307 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 
 import edu.ncsu.csc.CoffeeMaker.common.TestUtils;
+import edu.ncsu.csc.CoffeeMaker.models.Ingredient;
 import edu.ncsu.csc.CoffeeMaker.models.Recipe;
 import edu.ncsu.csc.CoffeeMaker.services.RecipeService;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@ExtendWith ( SpringExtension.class )
+@ExtendWith(SpringExtension.class)
 public class APIRecipeTest {
 
-    @Autowired
-    private RecipeService service;
+	@Autowired
+	private RecipeService service;
 
-    @Autowired
-    private MockMvc       mvc;
+	@Autowired
+	private MockMvc mvc;
+	private Ingredient coffee;
+	private Ingredient milk;
+	private Ingredient sugar;
+	private Ingredient chocolate;
 
-    @Test
-    @Transactional
-    public void ensureRecipe () throws Exception {
-        service.deleteAll();
+	@Test
+	@Transactional
+	public void ensureRecipe() throws Exception {
+		service.deleteAll();
 
-        final Recipe r = new Recipe();
-        r.setChocolate( 5 );
-        r.setCoffee( 3 );
-        r.setMilk( 4 );
-        r.setSugar( 8 );
-        r.setPrice( 10 );
-        r.setName( "Mocha" );
+		final Recipe r = new Recipe();
+		coffee = new Ingredient("coffee", 3);
+		milk = new Ingredient("milk", 4);
+		sugar = new Ingredient("sugar", 8);
+		chocolate = new Ingredient("chocolate", 5);
+		r.setPrice(10);
+		r.setName("Mocha");
+		r.addIngredient(coffee);
+		r.addIngredient(milk);
+		r.addIngredient(sugar);
+		r.addIngredient(chocolate);
+		mvc.perform(post("/api/v1/recipes").contentType(MediaType.APPLICATION_JSON).content(TestUtils.asJsonString(r)))
+				.andExpect(status().isOk());
 
-        mvc.perform( post( "/api/v1/recipes" ).contentType( MediaType.APPLICATION_JSON )
-                .content( TestUtils.asJsonString( r ) ) ).andExpect( status().isOk() );
+	}
 
-    }
-    
-    
-    @Test
-    @Transactional
-    public void testRecipeAPI () throws Exception {
+	@Test
+	@Transactional
+	public void testValidGetRecipeAPI() throws Exception {
+		service.deleteAll();
+		final Recipe r = new Recipe();
+		coffee = new Ingredient("coffee", 3);
+		milk = new Ingredient("milk", 4);
+		sugar = new Ingredient("sugar", 8);
+		chocolate = new Ingredient("chocolate", 5);
+		r.setPrice(10);
+		r.setName("Mocha");
+		r.addIngredient(coffee);
+		r.addIngredient(milk);
+		r.addIngredient(sugar);
+		r.addIngredient(chocolate);
 
-        service.deleteAll();
+		service.save(r);
+		mvc.perform(get("/api/v1/recipes/Mocha").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 
-        final Recipe recipe = new Recipe();
-        recipe.setName( "Delicious Not-Coffee" );
-        recipe.setChocolate( 10 );
-        recipe.setMilk( 20 );
-        recipe.setSugar( 5 );
-        recipe.setCoffee( 1 );
+	}
 
-        recipe.setPrice( 5 );
+	/**
+	 * Tests getting all of the recipes using GET/recipes
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	@Transactional
+	public void testValidGetAllRecipesAPI() throws Exception {
+		service.deleteAll();
 
-        mvc.perform( post( "/api/v1/recipes" ).contentType( MediaType.APPLICATION_JSON )
-                .content( TestUtils.asJsonString( recipe ) ) );
+		// Create a recipe
+		final Recipe r = new Recipe();
+		coffee = new Ingredient("coffee", 3);
+		milk = new Ingredient("milk", 4);
+		sugar = new Ingredient("sugar", 8);
+		chocolate = new Ingredient("chocolate", 5);
+		r.setPrice(10);
+		r.setName("Mocha");
+		r.addIngredient(coffee);
+		r.addIngredient(milk);
+		r.addIngredient(sugar);
+		r.addIngredient(chocolate);
+		service.save(r);
 
-        Assertions.assertEquals( 1, (int) service.count() );
+		// Perform the get all recipes API call
+		mvc.perform(get("/api/v1/recipes").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 
-    }
+	}
 
+	@Test
+	@Transactional
+	public void tesNotFoundGetRecipeAPI() throws Exception {
+		service.deleteAll();
+		ResultActions result = mvc.perform(get("/api/v1/recipes/Mocha").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNotFound());
 
-    @Test
-    @Transactional
-    public void testAddRecipe2 () throws Exception {
-        service.deleteAll();
+		String errorMessage = result.andReturn().getResponse().getContentAsString();
+		Assertions.assertEquals("{\"status\":\"failed\",\"message\":\"No recipe found with name Mocha\"}",
+				errorMessage);
+	}
 
-        /* Tests a recipe with a duplicate name to make sure it's rejected */
+	@Test
+	@Transactional
+	public void testRecipeAPI() throws Exception {
 
-        Assertions.assertEquals( 0, service.findAll().size(), "There should be no Recipes in the CoffeeMaker" );
-        final String name = "Coffee";
-        final Recipe r1 = createRecipe( name, 50, 3, 1, 1, 0 );
+		service.deleteAll();
 
-        service.save( r1 );
+		service.deleteAll();
 
-        final Recipe r2 = createRecipe( name, 50, 3, 1, 1, 0 );
-        mvc.perform( post( "/api/v1/recipes" ).contentType( MediaType.APPLICATION_JSON )
-                .content( TestUtils.asJsonString( r2 ) ) ).andExpect( status().is4xxClientError() );
+		final Recipe recipe = new Recipe();
+		coffee = new Ingredient("coffee", 1);
+		milk = new Ingredient("milk", 20);
+		sugar = new Ingredient("sugar", 5);
+		chocolate = new Ingredient("chocolate", 10);
+		recipe.setPrice(50);
+		recipe.setName("Mocha");
+		recipe.addIngredient(coffee);
+		recipe.addIngredient(milk);
+		recipe.addIngredient(sugar);
+		recipe.addIngredient(chocolate);
 
-        Assertions.assertEquals( 1, service.findAll().size(), "There should only one recipe in the CoffeeMaker" );
-    }
+		mvc.perform(post("/api/v1/recipes").contentType(MediaType.APPLICATION_JSON)
+				.content(TestUtils.asJsonString(recipe)));
 
-    @Test
-    @Transactional
-    public void testAddRecipe15 () throws Exception {
-        service.deleteAll();
+		Assertions.assertEquals(1, (int) service.count());
 
-        /* Tests to make sure that our cap of 3 recipes is enforced */
+	}
 
-        Assertions.assertEquals( 0, service.findAll().size(), "There should be no Recipes in the CoffeeMaker" );
+	@Test
+	@Transactional
+	public void testCreateRecipeTooMany() throws Exception {
+		service.deleteAll();
 
-        final Recipe r1 = createRecipe( "Coffee", 50, 3, 1, 1, 0 );
-        service.save( r1 );
-        final Recipe r2 = createRecipe( "Mocha", 50, 3, 1, 1, 2 );
-        service.save( r2 );
-        final Recipe r3 = createRecipe( "Latte", 60, 3, 2, 2, 0 );
-        service.save( r3 );
+		/* Tests a recipe with a duplicate name to make sure it's rejected */
 
-        Assertions.assertEquals( 3, service.count(),
-                "Creating three recipes should result in three recipes in the database" );
+		Assertions.assertEquals(0, service.findAll().size(), "There should be no Recipes in the CoffeeMaker");
 
-        final Recipe r4 = createRecipe( "Hot Chocolate", 75, 0, 2, 1, 2 );
+		final Recipe r1 = new Recipe();
+		coffee = new Ingredient("coffee", 3);
+		milk = new Ingredient("milk", 1);
+		sugar = new Ingredient("sugar", 1);
+		chocolate = new Ingredient("chocolate", 2);
+		r1.setPrice(50);
+		r1.setName("Mocha");
+		r1.addIngredient(coffee);
+		r1.addIngredient(milk);
+		r1.addIngredient(sugar);
+		r1.addIngredient(chocolate);
 
-        mvc.perform( post( "/api/v1/recipes" ).contentType( MediaType.APPLICATION_JSON )
-                .content( TestUtils.asJsonString( r4 ) ) ).andExpect( status().isInsufficientStorage() );
+		final Recipe r2 = new Recipe();
+		coffee = new Ingredient("coffee", 3);
+		milk = new Ingredient("milk", 1);
+		sugar = new Ingredient("sugar", 1);
+		chocolate = new Ingredient("chocolate", 2);
+		r2.setPrice(50);
+		r2.setName("Coffee");
+		r2.addIngredient(coffee);
+		r2.addIngredient(milk);
+		r2.addIngredient(sugar);
+		r2.addIngredient(chocolate);
 
-        Assertions.assertEquals( 3, service.count(), "Creating a fourth recipe should not get saved" );
-    }
+		service.save(r1);
+		service.save(r2);
 
-    private Recipe createRecipe ( final String name, final Integer price, final Integer coffee, final Integer milk,
-            final Integer sugar, final Integer chocolate ) {
-        final Recipe recipe = new Recipe();
-        recipe.setName( name );
-        recipe.setPrice( price );
-        recipe.setCoffee( coffee );
-        recipe.setMilk( milk );
-        recipe.setSugar( sugar );
-        recipe.setChocolate( chocolate );
+		final Recipe r3 = new Recipe();
+		coffee = new Ingredient("coffee", 3);
+		milk = new Ingredient("milk", 1);
+		sugar = new Ingredient("sugar", 1);
+		chocolate = new Ingredient("chocolate", 2);
+		r3.setPrice(50);
+		r3.setName("another coffees");
+		r3.addIngredient(coffee);
+		r3.addIngredient(milk);
+		r3.addIngredient(sugar);
+		r3.addIngredient(chocolate);
 
-        return recipe;
-    }
+		service.save(r3);
+
+		final Recipe r4 = new Recipe();
+		coffee = new Ingredient("coffee", 3);
+		milk = new Ingredient("milk", 1);
+		sugar = new Ingredient("sugar", 1);
+		chocolate = new Ingredient("chocolate", 2);
+		r4.setPrice(50);
+		r4.setName("too much cofffee");
+		r4.addIngredient(coffee);
+		r4.addIngredient(milk);
+		r4.addIngredient(sugar);
+		r4.addIngredient(chocolate);
+
+		mvc.perform(post("/api/v1/recipes").contentType(MediaType.APPLICATION_JSON).content(TestUtils.asJsonString(r4)))
+				.andExpect(status().isInsufficientStorage());
+
+		Assertions.assertEquals(3, service.findAll().size(), "There should only 3 recipes in the CoffeeMaker");
+	}
+
+	@Test
+	@Transactional
+	public void testAddRecipe2() throws Exception {
+		service.deleteAll();
+
+		/* Tests a recipe with a duplicate name to make sure it's rejected */
+
+		Assertions.assertEquals(0, service.findAll().size(), "There should be no Recipes in the CoffeeMaker");
+
+		final Recipe r1 = new Recipe();
+		coffee = new Ingredient("coffee", 3);
+		milk = new Ingredient("milk", 1);
+		sugar = new Ingredient("sugar", 1);
+		chocolate = new Ingredient("chocolate", 2);
+		r1.setPrice(50);
+		r1.setName("Mocha");
+		r1.addIngredient(coffee);
+		r1.addIngredient(milk);
+		r1.addIngredient(sugar);
+		r1.addIngredient(chocolate);
+
+		final Recipe r2 = new Recipe();
+		coffee = new Ingredient("coffee", 3);
+		milk = new Ingredient("milk", 1);
+		sugar = new Ingredient("sugar", 1);
+		chocolate = new Ingredient("chocolate", 2);
+		r2.setPrice(50);
+		r2.setName("Mocha");
+		r2.addIngredient(coffee);
+		r2.addIngredient(milk);
+		r2.addIngredient(sugar);
+		r2.addIngredient(chocolate);
+
+		service.save(r1);
+
+		mvc.perform(post("/api/v1/recipes").contentType(MediaType.APPLICATION_JSON).content(TestUtils.asJsonString(r2)))
+				.andExpect(status().is4xxClientError());
+
+		Assertions.assertEquals(1, service.findAll().size(), "There should only one recipe in the CoffeeMaker");
+	}
+
+	/**
+	 * Tests that the API Endpoint DELETE/recipes successfully removes a recipe of
+	 * the given name. If no recipe exists, returns a 400 error response.
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	@Transactional
+	public void testDeleteRecipe() throws Exception {
+		service.deleteAll();
+
+		//Create and save Mocha recipe
+		Recipe mocha = new Recipe();
+		mocha.setName("Mocha");
+		mocha.setPrice(350);
+		coffee = new Ingredient("coffee", 50);
+		milk = new Ingredient("milk", 1);
+		chocolate = new Ingredient("chocolate", 5);
+		mocha.addIngredient(coffee);
+		mocha.addIngredient(milk);
+		mocha.addIngredient(chocolate);
+		service.save(mocha);
+
+		//Create and save Latte recipe
+		Recipe latte = new Recipe();
+		latte.setName("Latte");
+		coffee = new Ingredient("coffee", 50);
+		milk = new Ingredient("milk", 5);
+		chocolate = new Ingredient("chocolate", 1);
+		latte.addIngredient(coffee);
+		latte.addIngredient(milk);
+		latte.addIngredient(chocolate);
+		latte.setPrice(450);
+		service.save(latte);
+
+		// ensure that both are saved
+		List<Recipe> dbRecipes = (List<Recipe>) service.findAll();
+		Assertions.assertEquals(2, dbRecipes.size());
+
+		// delete operation on latte
+		mvc.perform(delete("/api/v1/recipes/Latte").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+
+		// get the updated list of recipes after the delete operation.
+		dbRecipes = (List<Recipe>) service.findAll();
+		Assertions.assertEquals(1, dbRecipes.size());
+
+		// remaining recipe should be mocha
+		Recipe remainingRecipe = dbRecipes.get(0);
+		Assertions.assertEquals("Mocha", remainingRecipe.getName());
+
+		// delete operation on mocha
+		mvc.perform(delete("/api/v1/recipes/Mocha").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+		
+		// Test an invalid delete recipe call
+		// Try to delete a recipe that does not exist
+		mvc.perform(delete("/api/v1/recipes/WeirdRecipeName").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().is4xxClientError());
+
+		// Confirm that no recipes are in the system
+		Assertions.assertEquals(0, service.findAll().size(), "There should not be any recipes in the CoffeeMaker");
+	}
 
 }

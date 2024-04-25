@@ -39,7 +39,7 @@ public class Inventory extends DomainObject {
 	/**
 	 * Use this to create inventory with specified amounts of each ingredient.
 	 *
-	 * @param ingredients
+	 * @param ingredients stored in the inventory
 	 */
 	public Inventory(List<Ingredient> ingredients) {
 		this.ingredients = ingredients;
@@ -73,6 +73,10 @@ public class Inventory extends DomainObject {
 		return null;
 	}
 
+	/**
+	 * adds a list of Ingredient objects from an inventory to the Inventory, by looping through the list
+	 * @param addInventory inventory being added
+	 */
 	public void addIngredients(Inventory addInventory) {
 		// Loop through the inventory being added. For each name, if the ingredient is
 		// in the system
@@ -85,7 +89,7 @@ public class Inventory extends DomainObject {
 			boolean ingredientAdded = false;
 			int idx = 0;
 			// Iterate through current ingredients list
-			while (idx < ingredients.size() && ingredientAdded == false) {
+			while (idx < ingredients.size() && !ingredientAdded) {
 				if (ingredients.get(idx).getName().equals(newIngredient.getName())) {
 					// Set the new quantity to be the sum of the existing quantity with the new
 					// quantity
@@ -97,7 +101,7 @@ public class Inventory extends DomainObject {
 				idx++;
 			}
 			// If the ingredient wasn't already in the system, add it.
-			if (ingredientAdded == false) {
+			if (!ingredientAdded) {
 				ingredients.add(newIngredient);
 			}
 		}
@@ -148,15 +152,19 @@ public class Inventory extends DomainObject {
 	 */
 	public boolean enoughIngredients(Recipe r) {
 		for (Ingredient recipeIngredient : r.getIngredients()) {
+			boolean enough = false;
 			for (int idx = 0; idx < ingredients.size(); idx++) {
 				// Find the inventory ingredient that matches the item in the recipe
 				if (ingredients.get(idx).getName().equals(recipeIngredient.getName())) {
 					// Check to make sure the quantity being added is not more than the amount in
 					// the inventory
 					if (ingredients.get(idx).getAmount() < recipeIngredient.getAmount()) {
-						return false;
+						enough = true;
 					}
 				}
+			}
+			if (!enough) {
+				return false;
 			}
 		}
 		return true;
@@ -176,5 +184,27 @@ public class Inventory extends DomainObject {
 		}
 		return buf.toString();
 	}
+	
+	   /**
+     * Sets the amount for a given ingredient. If the ingredient is not found,
+     * it adds the ingredient
+     * @param ingredientToUpdate the ingredient object with updated amount
+     */
+    public void setIngredient(Ingredient ingredientToUpdate) {
+        boolean found = false;
+        for (int idx = 0; idx < ingredients.size(); idx++) {
+            Ingredient ingredient = ingredients.get(idx);
+            if (ingredient.getName().equals(ingredientToUpdate.getName())) {
+                ingredients.set(idx, new Ingredient(ingredient.getName(), ingredientToUpdate.getAmount()));
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            ingredients.add(new Ingredient(ingredientToUpdate.getName(), ingredientToUpdate.getAmount()));
+        }
 
+
+    }
+    
 }

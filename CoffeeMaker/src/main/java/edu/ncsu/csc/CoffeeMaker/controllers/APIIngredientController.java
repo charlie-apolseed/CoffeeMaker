@@ -16,6 +16,13 @@ import edu.ncsu.csc.CoffeeMaker.models.Inventory;
 
 import edu.ncsu.csc.CoffeeMaker.services.InventoryService;
 
+/**
+ * This is the controller that holds the REST endpoints that handle add and
+ * update operations for the Ingredient.
+ *
+ * Spring will automatically convert all of the ResponseEntity and List results
+ * to JSON
+ */
 @SuppressWarnings({ "unchecked", "rawtypes" })
 @RestController
 public class APIIngredientController extends APIController {
@@ -32,7 +39,7 @@ public class APIIngredientController extends APIController {
 	 * Inventory. This will update the Inventory of the CoffeeMaker by adding
 	 * amounts from the Inventory provided to the CoffeeMaker's stored inventory
 	 *
-	 * @param inventory amounts to add to inventory
+	 * @param ingredient amounts to add to inventory
 	 * @return response to the request
 	 */
 	@PostMapping(BASE_PATH + "/ingredients")

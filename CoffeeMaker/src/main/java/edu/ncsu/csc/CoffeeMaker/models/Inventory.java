@@ -154,7 +154,7 @@ public class Inventory extends DomainObject {
 				if (ingredients.get(idx).getName().equals(recipeIngredient.getName())) {
 					// Check to make sure the quantity being added is not more than the amount in
 					// the inventory
-					if (ingredients.get(idx).getAmount() < recipeIngredient.getAmount()) {
+					if (ingredients.get(idx).getAmount() > recipeIngredient.getAmount()) {
 						enough = true;
 					}
 				}

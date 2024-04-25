@@ -48,11 +48,27 @@ public class Recipe extends DomainObject {
         ingredients = new ArrayList<Ingredient>();
     }
     
+    /**
+     * Adds ingredient to the recipe
+     * 
+     * @param ingredient to add
+     * @throws IAE if ingredient amount is zero
+     */
     public void addIngredient(Ingredient ingredient) {
+    	
+    	if (ingredient.getAmount() == 0) {
+    		throw new IllegalArgumentException("Ingredient " + ingredient.getName() + " must have an amount greater than zero");
+    	}
+    	
     	ingredients.add(ingredient);
     	
     }
     
+    /**
+     * Gets ingredients
+     * 
+     * @return list of ingredients
+     */
     public List<Ingredient> getIngredients () {
     	return ingredients;
     }

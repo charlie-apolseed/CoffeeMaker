@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,137 +9,210 @@
   <title>Add Recipe</title>
 </head>
 
-<div layout:fragment="content">
-  <script src="https://tildesites.bowdoin.edu/~k.preslermarshall/AngularJS/angular.min.js"></script>
-  <script>
+<body>
+  <div layout:fragment="content">
+    <script src="https://tildesites.bowdoin.edu/~k.preslermarshall/AngularJS/angular.min.js"></script>
+    <script>
       /* Without these comments, Thymeleaf will try to parse the Javascript as XML and break itself sometimes */
-      /*<![CDATA[*/ 
+      /*<![CDATA[*/
       var app = angular.module('myApp', []);
-      app.controller('populateCtrl', function($scope, $http) {
+      app.controller('populateCtrl', function ($scope, $http) {
 
-          /* Logic that handles controlling your page goes here */
+        $http.get("/api/v1/inventory").then(function (response) {
+          $scope.ingredients = response.data;
+          console.log(ingredients);
+        });
+
+
+        console.log("Angular started")
+        /* Logic that handles controlling your page goes here */
+
+
+        $scope.addIngredientFunction = function () {
+          alert("Ingredient added succesfully!")
+          console.log($scope.recipeName)
+        }
+
+        $scope.createRecipeFunction = function (name) {
+          alert(name + "  was created succesfully!")
+        }
+
+        $scope.concat = function (name, price) {
+          return name + " " + price
+        }
+
+        //Stuff for demo
+        $scope.timeIntervals = [
+          { value: 1, display: 'Daily' },
+          { value: 2, display: 'Weekly' },
+          { value: 3, display: 'Monthly' },
+          { value: 4, display: 'Annual' }
+        ];
+
+        $scope.branches = ["development", "frontend-data-entry", "backend", "developmentT2",
+          "developmentT1", "main", "kpresle-test", "kpresle-test-2", "frontend-display"];
+
+        $scope.commitData = {
+          "Kai Presler-Marshall (kpresle@ncsu.edu)":
+            [
+              { "count": 0, "display": "01/03/2020 00:00", "timestamp": 1583038800000 },
+              { "count": 0, "display": "03/03/2020 00:00", "timestamp": 1583211600000 }
+            ],
+          "Sara Ghodsi (sghodsi@ncsu.edu)":
+            [
+              { "count": 0, "display": "01/03/2020 00:00", "timestamp": 1583038800000 },
+              { "count": 0, "display": "03/03/2020 00:00", "timestamp": 1583211600000 },
+              { "count": 0, "display": "05/03/2020 00:00", "timestamp": 1583384400000 }
+            ]
+        };
 
       });
-      
+
       /* Without these comments, Thymeleaf will try to parse the Javascript as XML and break itself sometimes */
       /*]]>*/
-  </script>
+    </script>
 
-  <div ng-app="myApp" ng-controller="populateCtrl">
-
+    <div ng-app="myApp" ng-controller="populateCtrl">
       <!--- Various HTML elements, with extra tags telling Angular how to work with them, go here -->
-
-  </div>
-  
-</div>
-
-<body>
-  <div class="row justify-content-between mt-3">
-    <div class="col-auto">
-      <button type="button" class="btn btn-light btn-outline-dark p-3 m-3 mx-5">&lt; Cancel</button>
-    </div>
-    <div class="col-auto">
-      <h1> Add Recipe </h1>
-    </div>
-    <div class="col-auto">
-      <button type="button" class="btn btn-success btn-outline-dark p-3 m-3 mx-5">Add Recipe</button>
-    </div>
-  </div>
-  <hr>
-  <!-- Name and Price-->
-  <div class="my-2 row">
-    <label for="inputRecipeName" class="col-1 col-form-label ms-5">Name: </label>
-    <div class="col-4">
-      <input type="recipeName" class="form-control border-color-dark" id="inputPassword"
-        placeholder="Enter Recipe Name...">
-    </div>
-
-    <label for="inputPrice" class="col-1 col-form-label ms-3">Price: </label>
-    <div class="col-3">
-      <input type="price" class="form-control border-color-dark" id="inputPassword" placeholder="Enter A Price...">
-    </div>
-  </div>
-  <hr>
-  <!-- Added Ingredients-->
-  <style>
-    .alternate-bg-gray {
-      background-color: #f0f0f0; /* Light gray background color */
-    }
-  </style>
-  
-  <div class="my-1 row">
-    <h2 class="ms-5"> Recipe Ingredients:</h2>
-  </div>
-  
-  <div class="container border-color-dark">
-    <div class="container border">
-      <div class="row my-2 justify-content-between border-bottom">
-        <h6 class="col-auto mx-2">Ingredient Name</h6>
-        <h6 class="col-auto mx-2">Quantity</h6>
+      <div class="row justify-content-between mt-3">
+        <div class="col-auto">
+          <button type="button" class="btn btn-light btn-outline-dark p-3 m-3 mx-5">&lt; Cancel</button>
+        </div>
+        <div class="col-auto">
+          <h1> Add Recipe {{concat(recipeName, recipePrice)}}</h1>
+        </div>
+        <div class="col-auto">
+          <button ng-click="createRecipeFunction()" type="button"
+            class="btn btn-success btn-outline-dark p-3 m-3 mx-5">Add Recipe</button>
+        </div>
       </div>
-      <div style="height: 200px; overflow-y: scroll; overflow-x: hidden;">
-        <ul class="list-group justify-content-between" style="width: 100%;">
-          <li class="list-group-item d-flex justify-content-between align-items-center alternate-bg-gray">
-            Coffee
-            <span class="d-flex align-items-center">
-              <input type="text" class="form-control m-1" value="5" style="width: 50px;">
-              <img src="https://i.fbcd.co/products/resized/resized-750-500/de18ae7d25cea00a569f391100ae56d990105791a99a2d42f35d84477a869d68.jpg"
-                  alt="Trash Icon" style="width: 40px; height: 30px; margin: 5px;">
-            </span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            Chocolate
-            <span class="d-flex align-items-center">
-              <input type="text" class="form-control m-1" value="5" style="width: 50px;">
-              <img src="https://i.fbcd.co/products/resized/resized-750-500/de18ae7d25cea00a569f391100ae56d990105791a99a2d42f35d84477a869d68.jpg"
-                  alt="Trash Icon" style="width: 40px; height: 30px; margin: 5px;">
-            </span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center alternate-bg-gray">
-            Sugar
-            <span class="d-flex align-items-center">
-              <input type="text" class="form-control m-1" value="5" style="width: 50px;">
-              <img src="https://i.fbcd.co/products/resized/resized-750-500/de18ae7d25cea00a569f391100ae56d990105791a99a2d42f35d84477a869d68.jpg"
-                  alt="Trash Icon" style="width: 40px; height: 30px; margin: 5px;">
-            </span>
-          </li>
-        </ul>
+      <hr>
+      <!-- Name and Price-->
+      <div class="my-2 row">
+        <label for="inputRecipeName" class="col-1 col-form-label ms-5">Name: </label>
+        <div class="col-4">
+          <input type="text" ng-model="recipeName" class="form-control border-color-dark" id="inputPassword"
+            placeholder="Enter Recipe Name...">
+        </div>
+
+        <label for="inputPrice" class="col-1 col-form-label ms-3">Price: </label>
+        <div class="col-3">
+          <input ng-model="recipePrice" type="number" class="form-control border-color-dark" id="inputPassword"
+            placeholder="Enter A Price...">
+        </div>
       </div>
-    </div>
-  </div>
-<hr>  
-  
-  <!-- Inventory Ingredients-->
-  <div class="my-1 row">
-    <h2 class="ms-5"> Add Ingredients:</h2>
-  </div>
-  
-  <div class="container border-color-dark mb-3">
-    <div class="container border">
-      <div class="row my-2 justify-content-between border-bottom">
-        <h6 class="col-auto mx-2 mt-2">Ingredient Name</h6>
-        <button class="col-auto mx-2 mb-2">Add Ingredient</button>
+      <hr>
+      <!-- Added Ingredients-->
+      <style>
+        .alternate-bg-gray {
+          background-color: #f0f0f0;
+          /* Light gray background color */
+        }
+      </style>
+
+      <div class="my-1 row">
+        <h2 class="ms-5"> Recipe Ingredients:</h2>
       </div>
-      <div style="height: 200px; overflow-y: scroll; overflow-x: hidden;">
-        <ul class="list-group justify-content-between" style="width: 100%;">
-          <li class="list-group-item d-flex justify-content-between align-items-center alternate-bg-gray">
-            Milk
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center ">
-            Honey
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center alternate-bg-gray">
-            Cinnamon
-          </li>
-        </ul>
+
+      <div class="container border-color-dark">
+        <div class="container border">
+          <div class="row my-2 justify-content-between border-bottom">
+            <h6 class="col-auto mx-2">Ingredient Name</h6>
+            <h6 class="col-auto mx-2">Quantity</h6>
+          </div>
+          <div style="height: 200px; overflow-y: scroll; overflow-x: hidden;">
+            <ul class="list-group justify-content-between" style="width: 100%;">
+              <li class="list-group-item d-flex justify-content-between align-items-center alternate-bg-gray">
+                Coffee
+                <span class="d-flex align-items-center">
+                  <input type="text" class="form-control m-1" value="5" style="width: 50px;">
+                  <img
+                    src="https://i.fbcd.co/products/resized/resized-750-500/de18ae7d25cea00a569f391100ae56d990105791a99a2d42f35d84477a869d68.jpg"
+                    alt="Trash Icon" style="width: 40px; height: 30px; margin: 5px;">
+                </span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Chocolate
+                <span class="d-flex align-items-center">
+                  <input type="text" class="form-control m-1" value="5" style="width: 50px;">
+                  <img
+                    src="https://i.fbcd.co/products/resized/resized-750-500/de18ae7d25cea00a569f391100ae56d990105791a99a2d42f35d84477a869d68.jpg"
+                    alt="Trash Icon" style="width: 40px; height: 30px; margin: 5px;">
+                </span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center alternate-bg-gray">
+                Sugar
+                <span class="d-flex align-items-center">
+                  <input type="text" class="form-control m-1" value="5" style="width: 50px;">
+                  <img
+                    src="https://i.fbcd.co/products/resized/resized-750-500/de18ae7d25cea00a569f391100ae56d990105791a99a2d42f35d84477a869d68.jpg"
+                    alt="Trash Icon" style="width: 40px; height: 30px; margin: 5px;">
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+      <hr>
+
+      <!-- Inventory Ingredients-->
+      <div class="my-1 row">
+        <h2 class="ms-5"> Add Ingredients:</h2>
+      </div>
+
+      <div class="container border-color-dark mb-3">
+        <div class="container border">
+          <div class="row my-2 justify-content-between border-bottom">
+            <h6 class="col-auto mx-2 mt-2">Ingredient Name</h6>
+            <!--Add ingredient button-->
+            <button ng-click="addIngredientFunction()"
+              class="col-auto btn btn-secondary btn-outline-dark py-1 px-4 m-1 mx-1">Add
+              Ingredient</button>
+          </div>
+          <div style="height: 200px; overflow-y: scroll; overflow-x: hidden;">
+            <ul class="list-group justify-content-between" style="width: 100%;">
+              <li class="list-group-item d-flex justify-content-between align-items-center alternate-bg-gray">
+                Milk
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center ">
+                Honey
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center alternate-bg-gray">
+                Cinnamon
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm">
+          Select time interval: <br />
+          <select ng-model="interval" ng-options="item as item.display for item in timeIntervals" required="true">
+            <option value="">Select time interval for viewing data</option>
+          </select>
+        </div>
+        <div class="col-sm">
+          (Optional) Select the branches to view <br />
+          <div ng-repeat="branch in branches track by $index">
+            <input type="checkbox" ng-model="$parent.selectedBranches[branch]">
+            <h6> {{branch}}</h6>
+            </input>
+          </div>
+        </div>
+        <!-- Remember to remove the spaces between the two leading { and the two trailing } -->
+        <div ng-repeat="(user, commits) in commitData track by $index">
+          Commits for {{user}}:<br />
+          <div id="{{user}}">
+            <li ng-repeat="commit in commits">{{commit.display}}</li>
+          </div>
+        </div>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+
+      </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
 </body>
 
 </html>

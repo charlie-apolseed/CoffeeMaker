@@ -44,7 +44,7 @@
             //I don't think this is right because our inventory won't return very nicely?
             $scope.getIngredients = function () {
                 $http.get("/api/v1/inventory").then(function (response) {
-                    $scope.ingredients = response.data;
+                    $scope.ingredients = response.data.ingredients;
                 }, function (e) {
                     console.error("Could not get ingredients:", e);
                 });
@@ -56,27 +56,32 @@
                 //this is making sure that it is even there so no need for unnecessary post req
                 if (!$scope.newIngredient.name) {
                     // Handle error for blank ingredient name
+                    alert("Ingredient name is blank. Inventory was not updated")
                     $scope.addIngredientMessage = 'Ingredient name is blank';
                     return;
                 }
 
                 // you r doing post so you can validate it before you display it 
                 // will the json be formatted correctly when it's sending it here ?
-                $http.post("/api/v1/inventory", $scope.newIngredient).then(
+                $http.post("/api/v1/ingredients", $scope.newIngredient).then(
                     function (response) {
                         // this means it was successfully added
-                        $scope.ingredients.push({
-                            name: $scope.newIngredient.name,
-                            quantity: $scope.newIngredient.quantity || ''
-                        });
+                        $scope.getIngredients()
+                        alert($scope.newIngredient.name + " was successfully added.")
+                        
+                        // $scope.ingredients.push({
+                        //     name: $scope.newIngredient.name,
+                        //     quantity: $scope.newIngredient.quantity || 0
+                        // });
                         // you have to reset it 
                         $scope.newIngredient = {};
                         // $scope.addIngredientError = false;
-                        $scope.addIngredientMessage = 'Ingredient added successfully';
+                        $scope.addIngredientMessage = 'Ingredient was added successfully to the inventory';
                     }, function (e) {
+                        alert($scope.newIngredient.name + " could not be added.")
                         console.error("Error while adding ingredient", e);
                         // $scope.addIngredientError = true; 
-                        $scope.addIngredientMessage = 'There was an error when adding the ingredient';
+                        $scope.addIngredientMessage = 'There was an error when adding the ingredient. Try a different name';
                     });
 
             };
@@ -146,13 +151,14 @@
                     <h2 class="col-auto mx-2 mt-3">Current Ingredients: </h2>
                   </div>
           
-                  <ul class="list-group justify-content-between" style="width: 100%;" ng-repeat="ingredient in ingredients"
-                    ng-if="$index > 0">
+                  <ul class="list-group justify-content-between" style="width: 100%;" ng-repeat="ingredient in ingredients track by $index"
+                    ng-if="$index >= 0">
           
                     <li class="list-group-item d-flex justify-content-between align-items-center alternate-bg-gray">
-                      <p class="my-3">{{ingredient}}</p>
+
+                        <p class="m1-3">{{ingredient.name}}</p>
                       <span class="d-flex align-items-center">
-                        <p class="my-3 me-2">Current Quantity: <b>{{ ingredient }}</b></p>
+                        <p class="my-1 me-2">Current Quantity: <b>{{ ingredient.amount }}</b></p>
                       </span>
                     </li>
           
@@ -170,7 +176,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="ingredientQuantity" class="form-label">Quantity (Optional):</label>
-                            <input type="text" class="form-control" id="ingredientQuantity"
+                            <input type="number" class="form-control" id="ingredientQuantity"
                                 ng-model="newIngredient.quantity">
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
@@ -182,13 +188,7 @@
         </div>
 
     </div>
-    <!-- could not figure this part out yet -->
-    <!-- <div class="container mt-3">
-                <div ng-show="addIngredientMessage.length" class="alert"
-                    ng-class="{'alert-success': addIngredientMessage.includes('successfully'), 'alert-danger': addIngredientMessage.includes('Error') || addIngredientMessage.includes('blank')}">
-                    {{ addIngredientMessage }}
-                </div>
-            </div> -->
+   
 
 
 </div>

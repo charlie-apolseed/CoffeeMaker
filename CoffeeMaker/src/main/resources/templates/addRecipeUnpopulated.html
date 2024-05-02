@@ -20,6 +20,12 @@
       $scope.inventoryIngredients = []
       $scope.recipeIngredients = []
 
+      $scope.recipeName = ""
+      $scope.recipePrice = ""
+
+      $scope.nameErrorMessage = ""
+      $scope.priceErrorMessage = ""
+      $scope.ingredientsErrorMessage = ""
 
 
       $http.get("/api/v1/inventory").then(function (response) {
@@ -31,8 +37,11 @@
         }
 
       }, function (e) {
-        console.error("Could not get ingredients:", e);
+        alert(e.data.message)
+
       });
+
+      $scope.inventoryIngredients = [{ name: "Coffee", amount: "0" }]
 
 
       $scope.addToRecipe = function (ingredient) {
@@ -47,22 +56,91 @@
       $scope.removeFromRecipe = function (ingredient) {
         const index = $scope.recipeIngredients.indexOf(ingredient);
         if (index > -1) {
+          $scope.recipeIngredients[index].amount = 0
+
           $scope.inventoryIngredients.push($scope.recipeIngredients[index])
+          
           $scope.recipeIngredients.splice(index, 1);
         }
       }
 
-      $scope.addRecipe = function (ingredient) {
+      $scope.addRecipe = function () {
 
         recipe = { name: $scope.recipeName, price: $scope.recipePrice, ingredients: $scope.recipeIngredients }
 
-        $http.post("/api/v1/recipes", recipe).then(function (response) {
+        badName = false
+        negativePrice = false
+        badPrice = false
+        badIngredients = false
+        nonPositiveIngredients = false
 
-          alert(recipe.name + " was successfully added.")
+        if (recipe.name == "") {
+          badName = true
+        }
+        if (recipe.ingredients.length == 0) {
+          badIngredients = true
+        }
 
-        }, function (e) {
-          console.error("Could not get ingredients:", e);
-        });
+        if (isNaN(recipe.price) || recipe.price == "") {
+          badPrice = true
+        }
+        else if (Number(recipe.price) < 0) {
+          negativePrice = true
+        }
+        recipe.ingredients.forEach(function(ingredient){
+          if (isNaN(ingredient.amount)){
+            nonPositiveIngredients = true
+          }
+          else if (Number(ingredient.amount) <= 0) {
+            nonPositiveIngredients = true
+          }
+        })
+        
+
+
+
+        if (!badIngredients && !badName && !badPrice && !negativePrice) {
+          $http.post("/api/v1/recipes", recipe).then(function (response) {
+
+            alert(recipe.name + " was successfully added.")
+
+          }, function (e) {
+            alert("Failed to add recipe: " + e.data.message)
+            console.log(e)
+          });
+        }
+
+        if (badName) {
+          $scope.nameErrorMessage = "Name cannot be empty."
+        } else {
+          $scope.nameErrorMessage = ""
+        }
+
+
+        if(nonPositiveIngredients){
+          $scope.ingredientsErrorMessage = "Ingredients amounts must be positive integers."
+        }
+        else if (badIngredients) {
+          $scope.ingredientsErrorMessage = "Must have at least one ingredient."
+        } else {
+          $scope.ingredientsErrorMessage = ""
+        }
+
+        if (badPrice) {
+          $scope.priceErrorMessage = "Price must be a number."
+        } else if (negativePrice) {
+          $scope.priceErrorMessage = "Price must be non-negative."
+        } else {
+          $scope.priceErrorMessage = ""
+        }
+
+        
+
+
+
+
+
+
 
 
       }
@@ -80,7 +158,7 @@
         <a href="homepage.html">
           <button type="button" class="btn btn-light btn-outline-dark p-3 m-1 mx-5">&lt; Cancel</button>
         </a>
-        
+
       </div>
       <div class="col-auto">
         <h1> Add Recipe </h1>
@@ -97,12 +175,14 @@
       <div class="col-4">
         <input type="text" class="form-control border-color-dark" id="inputPassword" placeholder="Enter Recipe Name..."
           ng-model="recipeName">
+        <span style="color: red; font-size: small;">{{nameErrorMessage}}</span>
       </div>
 
       <label for="inputPrice" class="col-1 col-form-label ms-3">Price: </label>
       <div class="col-3">
         <input type="text" class="form-control border-color-dark" id="inputPassword" placeholder="Enter A Price..."
           ng-model="recipePrice">
+        <span style="color: red; font-size: small;">{{priceErrorMessage}}</span>
       </div>
     </div>
     <hr>
@@ -122,6 +202,12 @@
           <h3 class="ms-5"> Recipe Ingredients:</h3>
         </div>
 
+
+
+
+
+
+
         <div class="container border-color-dark">
           <div class="container border">
             <div class="row my-2 justify-content-between border-bottom">
@@ -135,7 +221,7 @@
                   class="list-group-item d-flex justify-content-between align-items-center alternate-bg-gray">
                   {{ingredient.name}}
                   <span class="d-flex align-items-center">
-                    <input type="text" class="form-control m-1" style="width: 50px;" ng-model="ingredient.amount">
+                    <input class="form-control m-1" style="width: 50px;" ng-model="ingredient.amount">
                     <img
                       src="https://i.fbcd.co/products/resized/resized-750-500/de18ae7d25cea00a569f391100ae56d990105791a99a2d42f35d84477a869d68.jpg"
                       alt="Trash Icon" style="width: 40px; height: 30px; margin: 5px;"
@@ -153,10 +239,15 @@
                       ng-click="removeFromRecipe(ingredient)">
                   </span>
                 </li>
+
+
               </ul>
             </div>
           </div>
+          <span class="ms-5" style="color: red; font-size: small;">{{ingredientsErrorMessage}}</span>
+
         </div>
+
 
       </div>
       <div class="col-6">

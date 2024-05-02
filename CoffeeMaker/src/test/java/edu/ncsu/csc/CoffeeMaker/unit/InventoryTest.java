@@ -29,7 +29,8 @@ public class InventoryTest {
 
     @BeforeEach
     public void setup () {
-        final Inventory ivt = inventoryService.getInventory();
+    	inventoryService.deleteAll();
+    	final Inventory ivt = inventoryService.getInventory();
         
         Ingredient chocolate = new Ingredient("Chocolate", 20);
         Ingredient coffee = new Ingredient("Coffee", 10);

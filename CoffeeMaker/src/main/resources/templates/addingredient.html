@@ -33,8 +33,8 @@
         var app = angular.module('myApp', []);
         app.controller('populateCtrl', function ($scope, $http) {
             // in order to store the ingredients
-            $scope.ingredients = [{name: 'cinamon', quantity: 10}, {name: 'apple', quantity: 10}, {name: 'chocolate', quantity: 10},
-        ];
+            $scope.ingredients = [{ name: 'cinamon', quantity: 10 }, { name: 'apple', quantity: 10 }, { name: 'chocolate', quantity: 10 },
+            ];
             $scope.newIngredient = {};
             // so you can display diff things 
             $scope.addIngredientMessage = '';
@@ -68,7 +68,7 @@
                         // this means it was successfully added
                         $scope.getIngredients()
                         alert($scope.newIngredient.name + " was successfully added.")
-                        
+
                         // $scope.ingredients.push({
                         //     name: $scope.newIngredient.name,
                         //     quantity: $scope.newIngredient.quantity || 0
@@ -145,50 +145,62 @@
 
         <!--current ingredients list-->
         <div class="container mt-2">
+            <!--current ingredients list-->
             <div class="container border-color-dark my-3">
-                <div class="container border bg-light" style="height: 250px; overflow-y: scroll; overflow-x: hidden;">
-                  <div class="row my-2 justify-content-between border-bottom">
+                <div class="container border bg-secondary mt-2 mb-0 justify-content-between border-bottom ">
                     <h2 class="col-auto mx-2 mt-3">Current Ingredients: </h2>
-                  </div>
-          
-                  <ul class="list-group justify-content-between" style="width: 100%;" ng-repeat="ingredient in ingredients track by $index"
-                    ng-if="$index >= 0">
-          
-                    <li class="list-group-item d-flex justify-content-between align-items-center alternate-bg-gray">
-
-                        <p class="m1-3">{{ingredient.name}}</p>
-                      <span class="d-flex align-items-center">
-                        <p class="my-1 me-2">Current Quantity: <b>{{ ingredient.amount }}</b></p>
-                      </span>
-                    </li>
-          
-          
                 </div>
-              </div>
 
-            <div class="d-flex justify-content-center mt-5">
-                <div class="col-md-6">
-                    <form ng-submit="addIngredient()">
-                        <div class="mb-3">
-                            <label for="ingredientName" class="form-label">Name*:</label>
-                            <input type="text" class="form-control" id="ingredientName" ng-model="newIngredient.name"
-                                placeholder="field required">
-                        </div>
-                        <div class="mb-3">
-                            <label for="ingredientQuantity" class="form-label">Quantity (Optional):</label>
-                            <input type="number" class="form-control" id="ingredientAmount"
-                                ng-model="newIngredient.amount">
-                        </div>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                            <button class="btn btn-primary" type="submit">+ Add New Ingredient</button>
-                        </div>
-                    </form>
+                <div class="container border bg-light" style="height: 250px; overflow-y: scroll; overflow-x: hidden;">
+
+
+                    <ul class="list-group justify-content-between" style="width: 100%;"
+                        ng-repeat="ingredient in ingredients track by $index" ng-if="$index >= 0">
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center alternate-bg-gray">
+
+                            <p class="m-2">{{ingredient.name}}</p>
+                            <span class="d-flex align-items-center">
+                                <p class="my-1 me-2">Inventory Quantity: <b>{{ ingredient.amount }}</b></p>
+                            </span>
+                        </li>
+
+
                 </div>
             </div>
-        </div>
 
+            <div class="container border-color-dark mt-5">
+                <div class="container border bg-secondary mt-2 mb-0 justify-content-between border-bottom ">
+                    <h2 class="col-auto mx-2 mt-3">Add New Ingredient: </h2>
+                </div>
+
+                <form class="d-flex justify-content-around bg-light" ng-submit="addIngredient()">
+                    <div class="col-4 my-3">
+                        <label for="ingredientName" class="form-label">Name*:</label>
+                        <input type="text" class="form-control" id="ingredientName" ng-model="newIngredient.name"
+                            placeholder="field required">
+                    </div>
+                    <div class="col-4 my-3">
+                        <label for="ingredientQuantity" class="form-label">Quantity (Optional):</label>
+                        <input type="number" class="form-control" id="ingredientAmount" ng-model="newIngredient.amount">
+                    </div>
+                    <div class="col-3 mt-5">
+                        <button class="btn btn-primary" type="submit">+ Add New Ingredient</button>
+                    </div>
+                </form>
+               
+            </div>
+
+
+           
+            <!--Add ingredient form-->
+            
+
+        </div>
     </div>
-   
+
+</div>
+
 
 
 </div>

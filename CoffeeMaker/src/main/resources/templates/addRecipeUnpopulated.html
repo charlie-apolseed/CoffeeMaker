@@ -31,17 +31,15 @@
       $http.get("/api/v1/inventory").then(function (response) {
         console.log(response.data)
         inventory = response.data;
-        for (ingredient in inventory.ingredients) {
+        inventory.ingredients.forEach(function(ingredient){
           newIngredient = { name: ingredient.name, amount: "0" }
           $scope.inventoryIngredients.push(newIngredient)
-        }
+        })
 
       }, function (e) {
         alert(e.data.message)
 
       });
-
-      $scope.inventoryIngredients = [{ name: "Coffee", amount: "0" }]
 
 
       $scope.addToRecipe = function (ingredient) {
@@ -99,10 +97,12 @@
 
 
 
-        if (!badIngredients && !badName && !badPrice && !negativePrice) {
+        if (!badIngredients && !badName && !badPrice && !negativePrice && !nonPositiveIngredients) {
           $http.post("/api/v1/recipes", recipe).then(function (response) {
 
             alert(recipe.name + " was successfully added.")
+
+            window.location.assign('homepage.html');
 
           }, function (e) {
             alert("Failed to add recipe: " + e.data.message)

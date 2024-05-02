@@ -26,6 +26,19 @@ public class MappingController {
     public String index ( final Model model ) {
         return "homepage";
     }
+    
+    /**
+     * On a GET request to /, the IndexController will return
+     * /src/main/resources/templates/homepage.html.
+     *
+     * @param model
+     *            underlying UI model
+     * @return contents of the page
+     */
+    @GetMapping ( { "/home", "/" } )
+    public String home ( final Model model ) {
+        return "homepage";
+    }
 
     /**
      * On a GET request to /recipe, the RecipeController will return

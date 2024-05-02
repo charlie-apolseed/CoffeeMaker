@@ -37,7 +37,7 @@ public class MappingController {
      */
     @GetMapping ( { "/recipe", "/recipe.html" } )
     public String addRecipePage ( final Model model ) {
-        return "addRecipePopulated";
+        return "addRecipeUnpopulated";
     }
 
     /**

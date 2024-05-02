@@ -12,10 +12,9 @@
 
   <script src="https://tildesites.bowdoin.edu/~k.preslermarshall/AngularJS/angular.min.js"></script>
   <script>
-    /*<![CDATA[*/
+    /*AngularJS stuff starts here*/
     var app = angular.module('myApp', []);
     app.controller('demo-ctrl', function ($scope, $http) {
-      /* Your functions and other stuff goes here */
 
       $scope.inventoryIngredients = []
       $scope.recipeIngredients = []
@@ -28,10 +27,11 @@
       $scope.ingredientsErrorMessage = ""
 
 
+      /* get inventory API end point to populate ingredients that can be adeed */
       $http.get("/api/v1/inventory").then(function (response) {
         console.log(response.data)
         inventory = response.data;
-        inventory.ingredients.forEach(function(ingredient){
+        inventory.ingredients.forEach(function (ingredient) {
           newIngredient = { name: ingredient.name, amount: "0" }
           $scope.inventoryIngredients.push(newIngredient)
         })
@@ -41,7 +41,7 @@
 
       });
 
-
+      /*functionality to add ingredients in the inventory column to the recipe*/
       $scope.addToRecipe = function (ingredient) {
         const index = $scope.inventoryIngredients.indexOf(ingredient);
         if (index > -1) {
@@ -50,22 +50,23 @@
         }
 
       }
-
+      /*remove from recipe dynamic, after clicking trash button */
       $scope.removeFromRecipe = function (ingredient) {
         const index = $scope.recipeIngredients.indexOf(ingredient);
         if (index > -1) {
           $scope.recipeIngredients[index].amount = 0
 
           $scope.inventoryIngredients.push($scope.recipeIngredients[index])
-          
+
           $scope.recipeIngredients.splice(index, 1);
         }
       }
 
+      /* add recipe to exsisting recipes, validation happens here */
       $scope.addRecipe = function () {
 
         recipe = { name: $scope.recipeName, price: $scope.recipePrice, ingredients: $scope.recipeIngredients }
-
+        /* all the different types of errors that have to be checked */
         badName = false
         negativePrice = false
         badPrice = false
@@ -85,18 +86,16 @@
         else if (Number(recipe.price) < 0) {
           negativePrice = true
         }
-        recipe.ingredients.forEach(function(ingredient){
-          if (isNaN(ingredient.amount)){
+        recipe.ingredients.forEach(function (ingredient) {
+          if (isNaN(ingredient.amount)) {
             nonPositiveIngredients = true
           }
           else if (Number(ingredient.amount) <= 0) {
             nonPositiveIngredients = true
           }
         })
-        
 
-
-
+        /* all the validation has passed, so recipe can be added */
         if (!badIngredients && !badName && !badPrice && !negativePrice && !nonPositiveIngredients) {
           $http.post("/api/v1/recipes", recipe).then(function (response) {
 
@@ -117,7 +116,7 @@
         }
 
 
-        if(nonPositiveIngredients){
+        if (nonPositiveIngredients) {
           $scope.ingredientsErrorMessage = "Ingredients amounts must be positive integers."
         }
         else if (badIngredients) {
@@ -133,24 +132,10 @@
         } else {
           $scope.priceErrorMessage = ""
         }
-
-        
-
-
-
-
-
-
-
-
       }
 
-
-
-
-
     });
-    /*]]>*/
+    /*Start of static html part*/
   </script>
   <div class="generic-container ng-cloak" ng-app="myApp" ng-controller="demo-ctrl">
     <div class="row justify-content-between mt-3">
@@ -202,12 +187,6 @@
           <h3 class="ms-5"> Recipe Ingredients:</h3>
         </div>
 
-
-
-
-
-
-
         <div class="container border-color-dark">
           <div class="container border">
             <div class="row my-2 justify-content-between border-bottom">
@@ -215,8 +194,10 @@
               <h6 class="col-auto mx-2">Quantity</h6>
             </div>
             <div style="height: 200px; overflow-y: scroll; overflow-x: hidden;">
+              <!-- list of the recipe ingredients-->
               <ul ng-repeat="ingredient in recipeIngredients track by $index" class="list-group justify-content-between"
                 style="width: 100%;">
+                <!-- if statement here to alternate the colors-->
                 <li ng-if="$index % 2 != 0"
                   class="list-group-item d-flex justify-content-between align-items-center alternate-bg-gray">
                   {{ingredient.name}}
@@ -233,6 +214,7 @@
                   {{ingredient.name}}
                   <span class="d-flex align-items-center">
                     <input type="text" class="form-control m-1" style="width: 50px;" ng-model="ingredient.amount">
+                    <!-- remove icon -->
                     <img
                       src="https://i.fbcd.co/products/resized/resized-750-500/de18ae7d25cea00a569f391100ae56d990105791a99a2d42f35d84477a869d68.jpg"
                       alt="Trash Icon" style="width: 40px; height: 30px; margin: 5px;"
@@ -267,7 +249,7 @@
                 <li ng-if="$index % 2 != 0"
                   class="list-group-item d-flex justify-content-between align-items-center alternate-bg-gray">
                   {{ingredient.name}}
-
+                  <!-- plus icon -->
                   <img
                     src="https://static.vecteezy.com/system/resources/previews/000/582/976/original/button-plus-icon-vector.jpg"
                     alt="Plus Icon" style="width: 30px; height: 30px; margin: 5px;" ng-click="addToRecipe(ingredient)">
@@ -275,7 +257,7 @@
 
                 <li ng-if="$index % 2 == 0" class="list-group-item d-flex justify-content-between align-items-center">
                   {{ingredient.name}}
-
+                  <!-- plus icon -->
                   <img
                     src="https://static.vecteezy.com/system/resources/previews/000/582/976/original/button-plus-icon-vector.jpg"
                     alt="Plus Icon" style="width: 30px; height: 30px; margin: 5px;" ng-click="addToRecipe(ingredient)">
@@ -287,10 +269,6 @@
         </div>
       </div>
     </div>
-
-
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

@@ -9,101 +9,294 @@
 </head>
 
 <body>
-  <div class="row justify-content-between mt-3">
-    <div class="col-auto">
-      <button type="button" class="btn btn-light btn-outline-dark p-3 m-1 mx-5">&lt; Cancel</button>
-    </div>
-    <div class="col-auto">
-      <h1> Add Recipe </h1>
-    </div>
-    <div class="col-auto">
-      <button type="button" class="btn btn-success btn-outline-dark p-3 m-1 mx-5">Add Recipe</button>
-    </div>
-  </div>
-  <hr>
-  <!-- Name and Price-->
-  <div class="my-2 row">
-    <label for="inputRecipeName" class="col-1 col-form-label ms-5">Name: </label>
-    <div class="col-4">
-      <input type="recipeName" class="form-control border-color-dark" id="inputPassword"
-        placeholder="Enter Recipe Name...">
-    </div>
 
-    <label for="inputPrice" class="col-1 col-form-label ms-3">Price: </label>
-    <div class="col-3">
-      <input type="price" class="form-control border-color-dark" id="inputPassword" placeholder="Enter A Price...">
-    </div>
-  </div>
-  <hr>
-  <!-- Added Ingredients-->
-  <style>
-    .alternate-bg-gray {
-      background-color: #f0f0f0; /* Light gray background color */
-    }
-  </style>
-  
-  <div class="my-1 row">
-    <h2 class="ms-5"> Recipe Ingredients:</h2>
-  </div>
-  
-  <div class="container border-color-dark">
-    <div class="container border">
-      <div class="row my-2 justify-content-between border-bottom">
-        <h6 class="col-auto mx-2">Ingredient Name</h6>
-        <h6 class="col-auto mx-2">Quantity</h6>
-      </div>
-      <div style="height: 200px; overflow-y: scroll; overflow-x: hidden;">
-        <ul class="list-group justify-content-between" style="width: 100%;">
+  <script src="https://tildesites.bowdoin.edu/~k.preslermarshall/AngularJS/angular.min.js"></script>
+  <script>
+    /*<![CDATA[*/
+    var app = angular.module('myApp', []);
+    app.controller('demo-ctrl', function ($scope, $http) {
+      /* Your functions and other stuff goes here */
+
+      $scope.inventoryIngredients = []
+      $scope.recipeIngredients = []
+
+      $scope.recipeName = ""
+      $scope.recipePrice = ""
+
+      $scope.nameErrorMessage = ""
+      $scope.priceErrorMessage = ""
+      $scope.ingredientsErrorMessage = ""
+
+
+      $http.get("/api/v1/inventory").then(function (response) {
+        console.log(response.data)
+        inventory = response.data;
+        for (ingredient in inventory.ingredients) {
+          newIngredient = { name: ingredient.name, amount: "0" }
+          $scope.inventoryIngredients.push(newIngredient)
+        }
+
+      }, function (e) {
+        alert(e.data.message)
+
+      });
+
+      $scope.inventoryIngredients = [{ name: "Coffee", amount: "0" }]
+
+
+      $scope.addToRecipe = function (ingredient) {
+        const index = $scope.inventoryIngredients.indexOf(ingredient);
+        if (index > -1) {
+          $scope.recipeIngredients.push($scope.inventoryIngredients[index])
+          $scope.inventoryIngredients.splice(index, 1);
+        }
+
+      }
+
+      $scope.removeFromRecipe = function (ingredient) {
+        const index = $scope.recipeIngredients.indexOf(ingredient);
+        if (index > -1) {
+          $scope.recipeIngredients[index].amount = 0
+
+          $scope.inventoryIngredients.push($scope.recipeIngredients[index])
           
-        </ul>
-      </div>
-    </div>
-  </div>
-<hr>  
-  
-  <!-- Inventory Ingredients-->
-  <div class="my-1 row">
-    <h2 class="ms-5"> Add Ingredients:</h2>
-  </div>
-  
-  <div class="container border-color-dark mb-3">
-    <div class="container border">
-      <div class="row my-2 justify-content-between border-bottom">
-        <h6 class="col-auto mx-2 mt-2">Ingredient Name</h6>
-        <button class="col-auto mx-2 mb-2">Add Ingredient</button>
-      </div>
-      <div style="height: 200px; overflow-y: scroll; overflow-x: hidden;">
-        <ul class="list-group justify-content-between" style="width: 100%;">
-          <li class="list-group-item d-flex justify-content-between align-items-center alternate-bg-gray">
-            Milk
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center ">
-            Honey
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center alternate-bg-gray">
-            Cinnamon
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center ">
-            Coffee
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center alternate-bg-gray">
-            Chocololate
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center ">
-            Honey
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center alternate-bg-gray">
-            Sugar
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+          $scope.recipeIngredients.splice(index, 1);
+        }
+      }
+
+      $scope.addRecipe = function () {
+
+        recipe = { name: $scope.recipeName, price: $scope.recipePrice, ingredients: $scope.recipeIngredients }
+
+        badName = false
+        negativePrice = false
+        badPrice = false
+        badIngredients = false
+        nonPositiveIngredients = false
+
+        if (recipe.name == "") {
+          badName = true
+        }
+        if (recipe.ingredients.length == 0) {
+          badIngredients = true
+        }
+
+        if (isNaN(recipe.price) || recipe.price == "") {
+          badPrice = true
+        }
+        else if (Number(recipe.price) < 0) {
+          negativePrice = true
+        }
+        recipe.ingredients.forEach(function(ingredient){
+          if (isNaN(ingredient.amount)){
+            nonPositiveIngredients = true
+          }
+          else if (Number(ingredient.amount) <= 0) {
+            nonPositiveIngredients = true
+          }
+        })
+        
 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+
+        if (!badIngredients && !badName && !badPrice && !negativePrice) {
+          $http.post("/api/v1/recipes", recipe).then(function (response) {
+
+            alert(recipe.name + " was successfully added.")
+
+          }, function (e) {
+            alert("Failed to add recipe: " + e.data.message)
+            console.log(e)
+          });
+        }
+
+        if (badName) {
+          $scope.nameErrorMessage = "Name cannot be empty."
+        } else {
+          $scope.nameErrorMessage = ""
+        }
+
+
+        if(nonPositiveIngredients){
+          $scope.ingredientsErrorMessage = "Ingredients amounts must be positive integers."
+        }
+        else if (badIngredients) {
+          $scope.ingredientsErrorMessage = "Must have at least one ingredient."
+        } else {
+          $scope.ingredientsErrorMessage = ""
+        }
+
+        if (badPrice) {
+          $scope.priceErrorMessage = "Price must be a number."
+        } else if (negativePrice) {
+          $scope.priceErrorMessage = "Price must be non-negative."
+        } else {
+          $scope.priceErrorMessage = ""
+        }
+
+        
+
+
+
+
+
+
+
+
+      }
+
+
+
+
+
+    });
+    /*]]>*/
+  </script>
+  <div class="generic-container ng-cloak" ng-app="myApp" ng-controller="demo-ctrl">
+    <div class="row justify-content-between mt-3">
+      <div class="col-auto">
+        <a href="homepage.html">
+          <button type="button" class="btn btn-light btn-outline-dark p-3 m-1 mx-5">&lt; Cancel</button>
+        </a>
+
+      </div>
+      <div class="col-auto">
+        <h1> Add Recipe </h1>
+      </div>
+      <div class="col-auto">
+        <button type="button" class="btn btn-success btn-outline-dark p-3 m-1 mx-5" ng-click="addRecipe()">Add
+          Recipe</button>
+      </div>
+    </div>
+    <hr>
+    <!-- Name and Price-->
+    <div class="my-2 row">
+      <label for="inputRecipeName" class="col-1 col-form-label ms-5">Name: </label>
+      <div class="col-4">
+        <input type="text" class="form-control border-color-dark" id="inputPassword" placeholder="Enter Recipe Name..."
+          ng-model="recipeName">
+        <span style="color: red; font-size: small;">{{nameErrorMessage}}</span>
+      </div>
+
+      <label for="inputPrice" class="col-1 col-form-label ms-3">Price: </label>
+      <div class="col-3">
+        <input type="text" class="form-control border-color-dark" id="inputPassword" placeholder="Enter A Price..."
+          ng-model="recipePrice">
+        <span style="color: red; font-size: small;">{{priceErrorMessage}}</span>
+      </div>
+    </div>
+    <hr>
+    <!-- Added Ingredients-->
+    <style>
+      .alternate-bg-gray {
+        background-color: #f0f0f0;
+        /* Light gray background color */
+      }
+    </style>
+
+
+
+    <div class="my-1 row">
+      <div class="col-6">
+        <div class="my-1 row">
+          <h3 class="ms-5"> Recipe Ingredients:</h3>
+        </div>
+
+
+
+
+
+
+
+        <div class="container border-color-dark">
+          <div class="container border">
+            <div class="row my-2 justify-content-between border-bottom">
+              <h6 class="col-auto mx-2">Ingredient Name</h6>
+              <h6 class="col-auto mx-2">Quantity</h6>
+            </div>
+            <div style="height: 200px; overflow-y: scroll; overflow-x: hidden;">
+              <ul ng-repeat="ingredient in recipeIngredients track by $index" class="list-group justify-content-between"
+                style="width: 100%;">
+                <li ng-if="$index % 2 != 0"
+                  class="list-group-item d-flex justify-content-between align-items-center alternate-bg-gray">
+                  {{ingredient.name}}
+                  <span class="d-flex align-items-center">
+                    <input class="form-control m-1" style="width: 50px;" ng-model="ingredient.amount">
+                    <img
+                      src="https://i.fbcd.co/products/resized/resized-750-500/de18ae7d25cea00a569f391100ae56d990105791a99a2d42f35d84477a869d68.jpg"
+                      alt="Trash Icon" style="width: 40px; height: 30px; margin: 5px;"
+                      ng-click="removeFromRecipe(ingredient)">
+                  </span>
+                </li>
+
+                <li ng-if="$index % 2 == 0" class="list-group-item d-flex justify-content-between align-items-center">
+                  {{ingredient.name}}
+                  <span class="d-flex align-items-center">
+                    <input type="text" class="form-control m-1" style="width: 50px;" ng-model="ingredient.amount">
+                    <img
+                      src="https://i.fbcd.co/products/resized/resized-750-500/de18ae7d25cea00a569f391100ae56d990105791a99a2d42f35d84477a869d68.jpg"
+                      alt="Trash Icon" style="width: 40px; height: 30px; margin: 5px;"
+                      ng-click="removeFromRecipe(ingredient)">
+                  </span>
+                </li>
+
+
+              </ul>
+            </div>
+          </div>
+          <span class="ms-5" style="color: red; font-size: small;">{{ingredientsErrorMessage}}</span>
+
+        </div>
+
+
+      </div>
+      <div class="col-6">
+        <!-- Inventory Ingredients-->
+        <div class="my-1 row">
+          <h3 class="ms-5"> Inventory Ingredients:</h3>
+        </div>
+
+        <div class="container border-color-dark mb-3">
+          <div class="container border">
+            <div class="row my-2 justify-content-between border-bottom">
+              <h6 class="col-auto mx-2 mt-2">Ingredient Name</h6>
+            </div>
+            <div style="height: 200px; overflow-y: scroll; overflow-x: hidden;">
+              <ul ng-repeat="ingredient in inventoryIngredients track by $index"
+                class="list-group justify-content-between" style="width: 100%;">
+                <li ng-if="$index % 2 != 0"
+                  class="list-group-item d-flex justify-content-between align-items-center alternate-bg-gray">
+                  {{ingredient.name}}
+
+                  <img
+                    src="https://static.vecteezy.com/system/resources/previews/000/582/976/original/button-plus-icon-vector.jpg"
+                    alt="Plus Icon" style="width: 30px; height: 30px; margin: 5px;" ng-click="addToRecipe(ingredient)">
+                </li>
+
+                <li ng-if="$index % 2 == 0" class="list-group-item d-flex justify-content-between align-items-center">
+                  {{ingredient.name}}
+
+                  <img
+                    src="https://static.vecteezy.com/system/resources/previews/000/582/976/original/button-plus-icon-vector.jpg"
+                    alt="Plus Icon" style="width: 30px; height: 30px; margin: 5px;" ng-click="addToRecipe(ingredient)">
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
+
+  </div>
 </body>
 
 </html>

@@ -15,29 +15,42 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MappingController {
 
     /**
-     * On a GET request to /index, the IndexController will return
+     * On a GET request to /home, the IndexController will return
      * /src/main/resources/templates/homepage.html.
      *
      * @param model
      *            underlying UI model
      * @return contents of the page
      */
-    @GetMapping ( { "/index", "/" } )
+    @GetMapping ( { "/home", "/homepage.html" } )
     public String index ( final Model model ) {
         return "homepage";
     }
-
+    
     /**
-     * On a GET request to /recipe, the RecipeController will return
-     * /src/main/resources/templates/addRecipePopulated.html.
+     * On a GET request to /, the IndexController will return
+     * /src/main/resources/templates/homepage.html.
      *
      * @param model
      *            underlying UI model
      * @return contents of the page
      */
-    @GetMapping ( { "/recipe", "/recipe.html" } )
+    @GetMapping ( { "/home", "/" } )
+    public String home ( final Model model ) {
+        return "homepage";
+    }
+
+    /**
+     * On a GET request to /addRecipe, the RecipeController will return
+     * /src/main/resources/templates/addRecipe.html.
+     *
+     * @param model
+     *            underlying UI model
+     * @return contents of the page
+     */
+    @GetMapping ( { "/addRecipe", "/addRecipe.html" } )
     public String addRecipePage ( final Model model ) {
-        return "addRecipePopulated";
+        return "addRecipe";
     }
 
     /**

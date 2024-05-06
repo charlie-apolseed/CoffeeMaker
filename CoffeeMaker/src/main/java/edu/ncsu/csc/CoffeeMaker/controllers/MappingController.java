@@ -41,16 +41,16 @@ public class MappingController {
     }
 
     /**
-     * On a GET request to /recipe, the RecipeController will return
-     * /src/main/resources/templates/addRecipePopulated.html.
+     * On a GET request to /addRecipe, the RecipeController will return
+     * /src/main/resources/templates/addRecipe.html.
      *
      * @param model
      *            underlying UI model
      * @return contents of the page
      */
-    @GetMapping ( { "/recipe", "/recipe.html" } )
+    @GetMapping ( { "/addRecipe", "/addRecipe.html" } )
     public String addRecipePage ( final Model model ) {
-        return "addRecipeUnpopulated";
+        return "addRecipe";
     }
 
     /**
@@ -108,19 +108,6 @@ public class MappingController {
     }
     
     /**
-     * On a GET request to /addrecipe, the MakeCoffeeController will return
-     * /src/main/resources/templates/addrecipe.html.
-     *
-     * @param model
-     *            underlying UI model
-     * @return contents of the page
-     */
-    @GetMapping ( { "/addrecipe", "/addrecipe.html" } )
-    public String addRecipeForm ( final Model model ) {
-        return "addrecipe";
-    }
-    
-    /**
      * On a GET request to /addingredient, the MakeCoffeeController will return
      * /src/main/resources/templates/addingredient.html.
      *
@@ -128,9 +115,9 @@ public class MappingController {
      *            underlying UI model
      * @return contents of the page
      */
-    @GetMapping ( { "/addingredient", "/addingredient.html" } )
+    @GetMapping ( { "/addIngredient", "/addIngredient.html" } )
     public String addIngredient ( final Model model ) {
-        return "addingredient";
+        return "addIngredient";
     }
     
     /**

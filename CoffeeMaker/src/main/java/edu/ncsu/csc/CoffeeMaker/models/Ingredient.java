@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
+
 /**
  * Ingredient class: An ingredient is a object that has a name and an initial
  * amount. It can later on be added to a recipe.
@@ -71,6 +72,9 @@ public class Ingredient extends DomainObject {
 	 * @throws IAE if amount is negative
 	 */
 	public void setAmount(Integer amount) {
+		if (amount == null) {
+			amount = 0;
+		}
 		if (amount < 0) {
 			throw new IllegalArgumentException("Amount cannot be negative");
 		}

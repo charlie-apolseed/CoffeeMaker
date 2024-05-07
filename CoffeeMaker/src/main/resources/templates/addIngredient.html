@@ -63,6 +63,9 @@
 
                 // you r doing post so you can validate it before you display it 
                 // will the json be formatted correctly when it's sending it here ?
+                if ($scope.newIngredient.amount == null){
+                    $scope.newIngredient.amount = 0
+                }
                 $http.post("/api/v1/ingredients", $scope.newIngredient).then(
                     function (response) {
                         // this means it was successfully added
@@ -179,7 +182,7 @@
                     </div>
                     <div class="col-4 my-3">
                         <label for="ingredientQuantity" class="form-label">Quantity (Optional):</label>
-                        <input type="number" class="form-control" id="ingredientAmount" ng-model="newIngredient.amount">
+                        <input type="number" class="form-control" id="ingredientAmount" ng-model="newIngredient.amount" ng-init="ingredient.amount = ingredient.amount || 0">
                     </div>
                     <div class="col-3 mt-5">
                         <button class="btn btn-info" type="submit">+ Add New Ingredient</button>

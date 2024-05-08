@@ -71,14 +71,14 @@ public class Ingredient extends DomainObject {
 	 * @param amount to set
 	 * @throws IAE if amount is negative
 	 */
-	public void setAmount(Integer amount) {
-		if (amount == null) {
-			amount = 0;
+	public void setAmount(Integer newAmount) {
+		if (newAmount == null) {
+			newAmount = 0;
 		}
-		if (amount < 0) {
+		if (newAmount < 0) {
 			throw new IllegalArgumentException("Amount cannot be negative");
 		}
-		this.amount = amount;
+		this.amount = newAmount;
 	}
 
 	

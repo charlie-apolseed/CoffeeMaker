@@ -68,7 +68,7 @@ public class Ingredient extends DomainObject {
 	/**
 	 * Setter for amount
 	 * 
-	 * @param amount to set
+	 * @param newAmount to set
 	 * @throws IAE if amount is negative
 	 */
 	public void setAmount(Integer newAmount) {
